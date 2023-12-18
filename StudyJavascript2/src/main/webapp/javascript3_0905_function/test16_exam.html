@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// [ 전달인자도 있고, 리턴값도 있는 함수 연습 ]
+	// 1. 정수 2개를 전달 받아 두 수의 합을 계산 후 리턴하는 함수 sum() 정의
+	// sum() 함수 정의
+	function sum(num1, num2) {
+		return num1 + num2;
+// 		let total = num1 + num2;
+// 		return total;
+	}
+	// sum() 함수 호출
+	// => 정수 10, 20 전달한 뒤 리턴되는 합계(30)을 받아 출력
+	let total = sum(10, 20);
+	document.write("합계 = " + total);
+	document.write("<hr>");
+	// ----------------------------------------------------------
+	
+	// 2. 정수 1개를 전달받아 절대값을 리턴하는 함수 abs() 정의
+	// => e.g. -5 전달 시 5 리턴, 10 전달 시 10 그대로 리턴
+	// 함수 정의
+	
+	
+	
+	function abs(num) {
+		// 전달받은 값이 음수인지 판별하여 음수일 경우에만 양수로 변환 후 리턴
+		// 1) if문 블록 내에서 값을 직접 리턴하는 경우
+// 		if(num < 0) { // 음수일 경우
+// 			// 양수로 변환
+// 			return -num; // 변환된 값 리턴
+// 		} else { // 양수일 경우
+// 			return num; // 양수 그대로 리턴
+// 		}
+		// ----------------------------------		
+		// 2) if문 블록 내에서는 변환 작업만 수행하고 if문 종료 후 return 문을 사용하는 경우		
+		if(num < 0) { // 음수일 경우
+			// 양수로 변환			
+			num = -num;
+		} /* else {
+			num = num;
+		} 조차 안 써도 된다!! 
+		else문 불필요, num = num;도 불필요*/
+		// 양수일 경우는 별도의 변환이 불필요하므로 else 문도 불필요
+		// 결과값을 공통으로 리턴		
+		return num;
+	}
+	
+	// 함수 호출
+// 	let absnum = abs(-7);
+// 	document.write("절대값은 " + absnum + "<br>");
+	document.write("-5의 절대값 = " + abs(-5) + "<br>");
+	document.write("10의 절대값 = " + abs(10) + "<br>");
+	document.write("0의 절대값 = " + abs(0) + "<br>");
+	document.write("<hr>");
+	
+	
+	// ------------------------------------------------------
+	// 3. 아이디, 패스워드를 전달받아 일치 여부를 판별하는 login() 함수 정의
+	// => 만약, 아이디가 "admin"이고 패스워드가 "1234"일 경우 "로그인 성공!" 리턴
+	//	  아니면, "로그인 실패!" 리턴
+	// 함수 정의
+	function login(id, passwd) {
+		// 데이터베이스에 아이디와 패스워드가 저장되어 있다고 가정하고 변수에 아이디, 패스워드 저장
+		let dbId = "admin";
+		let dbPasswd = "1234";
+		
+		// 전달받은 아이디, 패스워드와 데이터베이스에서 가져온 아이디, 패스워드를 비교
+		if(id == dbId && passwd == dbPasswd){
+			return "로그인 성공!";
+		} else {
+			return "로그인 실패!";
+		}
+	}
+	
+	// 함수 호출
+	// => 아이디 "admin", 패스워드 "1234" 전달 시 리턴되는 값("로그인 성공")을 저장 후 출력
+	let result = login("admin", "1234");
+	document.write("로그인 결과 : " + result + "<br>");
+	
+	document.write("로그인 결과 : " + login("admin", "12345") + "<br>");
+	
+// 	document.write("결과는 " + login("admin","1234") + "<br>");
+// 	document.write("결과는 " + login("ddadmin","1234") + "<br>");
+// 	document.write("결과는 " + login("admin","12d34") + "<br>");
+// 	document.write("<hr>");
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

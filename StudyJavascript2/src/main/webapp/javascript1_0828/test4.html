@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--
+[ 외부 자바스크립트 파일 불러오기 ]
+- <script> 태그의 src 속성을 통해 불러올 외부 자바스크립트 파일 지정
+- 절대경로 또는 상대경로 모두 사용 가능
+- 외부 자바스크립트와 내부 자바스크립트 모두 차례대로 실행됨
+- 주의! 외부 파일을 불러오는 <script> 태그 내에 자바스크립트 코드 작성 시 동작하지 않는다! 
+- 주의! 대상 파일(또는 경로)을 잘못 지정했을 경우 파일을 불러올 수 없으므로 오류 발생!
+  => Failed to load resource: the server responded with a status of 404 ()   test4.j:1     
+-->
+<script type="text/javascript" src="test4.js">
+	// 외부 스크립트 파일을 불러오는 영역이므로 자바스크립트 코드 기술 시 동작하지 않음!
+	alert("확인2"); // 실행되지 않는 코드!
+</script>
+
+<!-- test4.js 파일 내의 자바스크립트가 먼저 실행된 후 아래쪽 스크립트가 실행됨 -->
+<script type="text/javascript">
+	alert("확인1");
+</script>
+
+<!-- webapp/js/outter_test4.js 파일 불러오기 -->
+<script type="text/javascript" src="../js/outter_test4.js"></script>
+</head>
+<body>
+	<!-- 자바스크립트 영역 태그(<script>)는 복수개 존재 가능하며, 위치도 무관(차례대로 실행) -->
+	<script type="text/javascript">
+		document.write("<h3>이 위치는 body 영역 h1 태그 앞입니다.</h3>")
+	</script>
+	
+	<h1>이 곳은 HTML 문서의 body 영역입니다.</h1>
+	
+	<!-- <script> 태그의 type 속성은 생략 가능함 -->
+	<script>
+		document.write("<h3>이 위치는 body 영역 h1 태그 뒤입니다.</h3>")
+	</script>
+</body>
+</html>

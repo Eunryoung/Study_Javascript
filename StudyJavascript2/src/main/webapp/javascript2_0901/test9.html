@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ for문 ]
+	for(1)초기식; 2)조건식; 4)증감식) {
+		// 3) 조건식 판별 결과가 true 일 경우 반복 수행할 문장들...
+	}
+	
+	1) 초기식 : 반복 횟수를 결정하는데 사용할 변수 값을 초기화하는 코드(변수 선언도 가능)
+	2) 조건식 : 반복 횟수를 결정하는데 사용되는 목표값을 지정하는 식
+	            => 판별 결과가 true 이면 블럭 내의 코드를 실행하고, false 이면 for문 종료
+	3) 실행문 : 조건식 판별 결과가 true 일 때 실행할 문장들을 기술
+	4) 증감식 : 반복 횟수를 결정하는데 사용되는 변수의 증감을 위한 식
+	=> for문은 최초 1번을 한 번 실행 후 2번 조건식을 판별하여 true 일 동안
+	   3번 -> 4번 -> 2번 과정을 반복 실행함
+	*/
+
+	// document.write() 를 사용하여 "Hello, World!" 문자열 3번 출력	
+	document.write("Hello, World!<br>");
+	document.write("Hello, World!<br>");
+	document.write("Hello, World!<br>");
+	document.write("<hr>");
+	
+	
+	// 위의 작업을 for 문으로 동일하게 수행
+	// 제어변수 i 가 1 부터 시작하여 3보다 작거나 같을 동안 1씩 증가하면서 출력문 반복	
+// 	for(let i = 1; i <= 3; i++){
+// 		document.write("Hello, World!<br>");
+// 		document.write(i + " : Hello, World!<br>");
+// 	}
+
+	for(var i = 1; i <= 3; i++){
+// 		document.write("Hello, World!<br>");
+		document.write(i + " : Hello, World!<br>");
+	}
+	
+	// 주의! for문 외부에서 for문 내의 변수 값에 접근하려면
+	// let 대신 var 를 통해 변수를 선언해야한다!
+	document.write("for문 종료 후 i 값 = " + i); // for문 빠져나올 때 i값이 4인 채로 빠져나옴
+	
+	/*
+	위의 반복문(for)에 대한 디버깅 과정(= 추적)
+	--------------------------------------------------------------------------------------
+	초기식(i)  조건식(i <= 3)  실행문(i + " : Hello, World!<br>" 출력)    증감식(i++)
+	--------------------------------------------------------------------------------------
+	 i = 1         true            "1 : Hello, World!" 출력됨           i 가 1 -> 2 증가
+	 i = 2         true            "2 : Hello, World!" 출력됨           i 가 2 -> 3 증가
+	 i = 3         true            "3 : Hello, World!" 출력됨           i 가 3 -> 4 증가
+	 i = 4         false           for문 반복 실행을 종료하고 빠져나감
+	*/
+	document.write("<hr>");
+	
+	// 자신의 이름을 10번 반복 출력
+// 	for(i = 10; i <= 100; i += 10){ // 초기식, 조건식, 증감식 변형해도 됨
+// 		document.write(i + " : 임은령<br>");
+// 	}
+	
+	// 숫자(정수) 1개를 입력받아 변수 num 에 저장 후 
+	// for문을 사용하여 1 ~ num 까지 1씩 증가하면서 제어변수값(i) 출력
+	// ex) 10 입력받았을 경우 : 1 2 3 4 5 6 7 8 9 10
+	let num = prompt("정수 하나를 입력하세요.");
+// 	for(i = 1; i <= num; i++){
+// 		document.write(i + " ");
+// 	}
+	
+	// 입력받은 정수 출력 시 홀수와 짝수로 구분하여 출력
+	// ex) 1 : 홀수!
+	//     2 : 짝수!
+	for(i = 1; i <= num; i++) {
+		// 홀수와 짝수 판별을 통해 서로 다른 출력문을 사용
+		// => if 문 활용(2로 나눈 나머지를 비교)		
+		if((i % 2) == 1) {
+			document.write(i + " : 홀수!<br>");
+			
+		} else {
+			document.write(i + " : 짝수!<br>");
+		}
+	}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

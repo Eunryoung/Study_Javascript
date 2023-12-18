@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 버튼 클릭 이벤트 핸들링
+// 		document.querySelector("#btnWrite").onclick = function() {}
+		// jQuery식 문법으로 고치면
+		$("#btnWrite").click(function() {
+			let content = $("#content").val();
+			let writer = $("#writer").val();
+// 			alert(content + ", " + writer);
+			// 작성된 내용, 작성자 항목을 테이블 내의 새로운 행에 출력
+			// => table 태그 내의 마지막 요소로 새로운 행 추가(append() 메서드 활용)
+// 			$("table").append(
+// 				"<tr>"
+// 					+ "<td>" + content + "</td>"
+// 					+ "<td>" + writer + "</td>"
+// 					+ "<td>09-22</td>"
+// 				+"</tr>"
+// 			);
+			
+			// table 태그에 prepend() 메서드 사용 시 th 태그를 밀어내고 맨 위에 추가 			
+// 			$("table").prepend(
+// 				"<tr>"
+// 					+ "<td>" + content + "</td>"
+// 					+ "<td>" + writer + "</td>"
+// 					+ "<td>09-22</td>"
+// 				+"</tr>"
+// 			);
+
+			// 제목 행의 아래쪽에 항상 끼워넣기(제목 행을 제외한 나머지 중 가장 위에 추가)
+			$("table tr:first").after(
+				"<tr>"
+					+ "<td>" + content + "</td>"
+					+ "<td class='td_center'>" + writer + "</td>"
+					+ "<td class='td_center'>09-22</td>"
+				+"</tr>"
+			);
+			
+			// 입력값 초기화
+			$("#content").val("");
+			$("#writer").val("");
+			
+		});
+	});
+</script>
+<style type="text/css">
+	.td_center {
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+	<h1>jQuery - test5_exam.html</h1>
+	<div>
+		<input type="text" id="content" placeholder="내용">
+		<input type="text" id="writer" placeholder="작성자">
+		<input type="button" value="작성" id="btnWrite">
+	</div>
+	<hr>
+	<table border = "1">
+		<tr>
+			<th width="200">내용</th>
+			<th width="70">작성자</th>
+			<th width="100">작성일</th>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function changeColor() {
+		document.querySelector("#name").style.background = "skyblue";
+	}
+	function changeColor2() {
+		document.querySelector("#name").style.background = "white";
+	}
+	function changeColor3(elem) {
+		element.style.background = "skyblue";
+	}
+	function checkId(){
+// 		console.log(document.querySelector("#id1").value);
+		let spanElem = document.querySelector("#checkIdResult1");
+// 		alert(spanElem.innerHTML);
+		spanElem.innerHTML = document.querySelector("#id1").value;
+	}
+</script>
+</head>
+<body>
+	이름 : <input type="text" id="name" 
+			onfocus="changeColor()" onblur="changeColor2()"><br>
+	나이 : <input type="text" id="age" 
+			onfocus="changeColor3(this)" onblur="this.style.background = 'white'"><br>
+	<hr>
+	아이디(keyup) : <input type="text" id="id1" onkeyup="checkId()">
+	<span id="checkIdResult1"></span><br>
+	아이디(change) : <input type="text" id="id2" onchange="checkId2(this.value)">
+	<span id="checkIdResult2"></span><br>
+
+</body>
+</html>

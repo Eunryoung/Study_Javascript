@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ 문서 내의 각 요소 접근 방법 - 이미지(img 태그) ]
+	1. document.getElementXXX() 또는 document.querySelectorXXX() 등의 메서드 활용하여 접근
+	   e.g. document.querySelector("#img1")
+	2. 이미지(img) 태그에 지정된 name 속성값으로 접근   
+	   => document.name속성값.접근할속성명
+	   e.g. document.imgName1.src
+	3. 이미지 태그 전체(= 복수개의 이미지)를 배열 형태로 접근(갯수는 무관)
+	   => 자바스크립트는 이미지 태그(객체) 복수개를 images라는 이름의 배열로 관리 
+	   images 배열의 인덱스를 활용하여 해당 인덱스에 접근 가능(단, document.images로 접근)
+	   => document.images[인덱스].접근할속성명
+	   e.g. document.images[0].src => 첫번째 이미지의 src 속성에 접근
+	*/
+	function showImageInfo() {
+		   // 1번 방법을 활용하여 div 영역에 텍스트 출력
+		   // id 선택자 "infoArea"인 div 태그 영역 내에 텍스트 출력(태그도 적용)
+// 		   document.querySelector("#infoArea").innerHTML = "확인";
+		   // div 태그 영역 내에 첫번째 이미지(#img1)의 src 속성값 출력
+// 		   document.querySelector("#infoArea").innerHTML = document.querySelector("#img1").src;
+		   // div 태그 영역 내에 첫번째 이미지(#img1)의 src, width, height 속성값 모두 출력
+// 		   document.querySelector("#infoArea").innerHTML = 
+// 			   "src = " + document.querySelector("#img1").src + "<br>"
+// 			   + "width = " + document.querySelector("#img1").width + "<br>"
+// 			  + "height = " + document.querySelector("#img1").height;
+		   // ------------------------------------------------------------
+		   // 2번 방법을 활용하여 div 영역에 텍스트 출력
+		   // id 선택자 "infoArea"인 div 태그 영역 내에 텍스트 출력(태그도 적용)
+// 		  document.querySelector("#infoArea").innerHTML = 
+// 			   "src = " + document.imgName1.src + "<br>"
+// 			   + "width = " + document.imgName1.width + "<br>"
+// 			  + "height = " + document.imgName1.height;
+// 	}
+		   // ------------------------------------------------------------
+		   // 3번 방법을 활용하여 div 영역에 텍스트 출력
+		   // id 선택자 "infoArea"인 div 태그 영역 내에 텍스트 출력(태그도 적용)
+		   // => document.images[인덱스].접근할속성명
+		   // 첫번째 이미지(인덱스번호 0)의 속성값을 출력
+// 		  document.querySelector("#infoArea").innerHTML = 
+// 			   "src(images[0]) = " + document.images[0].src + "<br>"
+// 			   + "width(images[0]) = " + document.images[0].width + "<br>"
+// 			  + "height(images[0]) = " + document.images[0].height + "<hr>"
+// 			  + "src(images[1]) = " + document.images[1].src + "<br>"
+// 			   + "width(images[1]) = " + document.images[1].width + "<br>"
+// 			  + "height(images[1]) = " + document.images[1].height + "<hr>";
+			  
+			  
+		  // div 영역에 출력할 데이터를 변수에 저장 후 출력도 가능
+// 		  let imagesInfo =  "src(images[0]) = " + document.images[0].src + "<br>"
+// 		   					+ "width(images[0]) = " + document.images[0].width + "<br>"
+// 							+ "height(images[0]) = " + document.images[0].height + "<hr>"
+// 							+ "src(images[1]) = " + document.images[1].src + "<br>"
+// 							+ "width(images[1]) = " + document.images[1].width + "<br>"
+// 							+ "height(images[1]) = " + document.images[1].height + "<hr>";
+		  
+// 		   document.querySelector("#infoArea").innerHTML = imagesInfo;
+
+		  // 위의 3번 작업에서 0번, 1번 배열 접근 과정을 반복문으로 처리할 경우
+		  // => for문을 사용하여 document.images 배열 요소를 차례대로 접근
+		  // document.images를 배열 이름이라고 생각해라!!!
+		  let imagesInfo = ""; // 이미지들의 정보를 결합하여 저장할 변수 선언
+		  for(let i = 0; i < document.images.length; i++) {
+			  // 각 배열 인덱스 요소 정보를 문자열로 결합한 후 다시 imagesInfo 변수에 결합
+			  // => 배열 인덱스는 for문의 제어변수 i 활용
+			  imagesInfo += "src = " + document.images[i].src + "<br>"
+							+ "width = " + document.images[i].width + "<br>"
+							+ "height = " + document.images[i].height + "<hr>";
+		  }
+		  
+		  // 반복문이 종료되면 모든 이미지의 정보가 imagesInfo 변수에 결합되어 있으므로
+		  // div 영역(#infoArea)에 변수값 그대로 출력
+		  document.querySelector("#infoArea").innerHTML = imagesInfo;
+		  
+		  	
+	} // showImagesInfo() 메서드 끝
+
+	// body 영역 로딩 완료시 익명 함수 load 이벤트 처리
+	window.onload = function() {
+		// 이미지 속성정보 출력버튼(btn1) 클릭 시 showImageInfo() 함수 호출하도록 이벤트 처리
+		document.querySelector("#btn1").onclick = showImageInfo;
+		// ==================================================================
+	    // 이미지 속성정보 변경 버튼 클릭 이벤트 처리 - 익명 함수로 처리
+	    document.querySelector("#btn2").onclick = function() {
+			// 이미지 정보 변경
+			// 2번방법 활용) name 속성을 활용하여 첫번째 이미지에 대해
+			// 파일명 : 3.jpg, 가로크기 : 300, 세로크기 : 200 으로 변경
+			document.imgName1.src = "3.jpg";
+			document.imgName1.width = "300";
+			document.imgName1.height = "200";
+			
+			// 3번방법 활용) document.images 배열을 활용하여 두번째 이미지에 대해
+			// 파일명 : 4.jpg, 가로크기 : 300, 세로크기 : 200으로 변경
+			document.images[1].src = "4.jpg";
+			document.images[1].width = "300";
+			document.images[1].height = "200";
+		};
+		  
+	}; // onload 이벤트 끝
+	
+</script>
+</head>
+<body>
+	<h1>test29.html</h1>
+	<img src ="1.jpg" id="img1" name="imgName1" width="200" height="150" title="자동차">
+	<img src ="2.jpg" id="img2" name="imgName2" width="200" height="150" title="나비"><br>
+	<input type="button" id ="btn1" value="이미지 속성정보 출력">
+	<input type="button" id ="btn2" value="이미지 속성정보 변경">
+	<div id="infoArea"></div>
+</body>
+</html>

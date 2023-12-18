@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ 선택자(Selector) ]
+	- HTML 문서에서 특정 대상을 구분(선택)하는 용도로 사용되는 속성(이름)
+	- id, class, 태그 등을 사용
+	1) id 선택자(#) : 태그 요소를 유일하게 구분할 수 있도록 지정하는 중복되지 않는 이름
+	2) class 선택자(.) : 태그 요소를 복수개 선택할 수 있도록 중복으로 지정하는 이름
+	3) 태그 선택자(태그명) : 해당 태그를 직접 선택할 수 있도록 지정하는 이름
+	
+	[ document 객체를 사용하여 특정 선택자를 갖는 요소를 선택하는 방법 ]
+	< 2. document 객체의 querySelector() 또는 querySelectorAll() 메서드 활용 >
+	- querySelector() - 요소가 1개인 대상에 접근(주로 id 선택자)
+	                    단, 요소가 복수개인 대상도 접근 가능하나 1개의 요소만 리턴됨
+	- querySelectorAll() - 요소가 복수개인 대상에 접근(주로 class 또는 태그 선택자)
+	                       복수개의 요소가 NodeList 타입으로 리턴됨
+	- 두 메서드에 전달하는 파라미터(선택자)에 따라 전달하는 전달인자 형태가 달라짐
+	  1) id 선택자 : 선택자명 앞에 # 기호 붙임(ex. querySelector("#name"))
+	  2) class 선택자 : 선택자명 앞에 . 기호 붙임(ex. querySelectorAll("#names"))
+	  3) 태그 선택자 : 선택자명을 태그명으로 그대로 지정(ex. querySelectorAll("h1"))
+	- getElementXXX() 메서드보다 더 다양한 작업 수행 가능
+	*/
+	function func1() {
+		// HTML 태그 요소들 중 id 선택자가 "name"인 태그(id="name")를 객체 형태로 가져오기( = 리턴)
+// 		let nameElement = document.querySelector("name");
+		// 주의! 각 선택자 지정을 위한 기호가 포함되지 않으면 태그 선택자로 인식되고
+		// 해당 태그가 존재하지 않을 경우 객체를 통한 요소 접근 시 오류 발생!
+// 		nameElement.value = "이순신"; // 오류
+		let nameElement = document.querySelector("#name");
+		nameElement.value = "이순신";
+		
+		// id 선택자가 "header2"인 태그에 접근하여 배경색 변경
+// 		let header2Element = document.querySelector("#header2");
+// 		header2.style.background = "green";
+		document.querySelector("#header2").style.background = "green";
+		
+		// querySelector() 사용해 class 선택자가 "header5"인 태그 요소의 배경색 노란색으로 변경
+// 		document.querySelector(".header5").style.background = "yellow";		
+		// => 단, class 선택자가 "header5"인 요소가 2개일 때
+		//	  처음 만나는 요소만 리턴되어 첫번째 "header5" 태그만 노란색으로 변경됨
+		
+		// 만약, class 선택자가 동일한 요소 전체에 접근하려면 querySelectorAll() 메서드 사용
+		let headers = document.querySelectorAll(".header5");		
+// 		alert(headers); // [object NodeList]
+		//HTMLCollection 객체 접근 방법과 동일함
+		for(let header5 of headers) {
+			header5.style.background = "green";
+		}
+		
+		// 태그 선택자("h4")를 활용하여 h4 태그 요소의 텍스트 색상 변경
+		let tagsH4 = document.querySelectorAll("h4"); // 태그명을 직접 지정
+		for(let h4 of tagsH4) {
+			// 각 h4 태그의 배경색상을 분홍색으로 변경
+			h4.style.color = "pink";
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>test24_2.html</h1>
+	<!-- id 선택자는 다른 선택자명과 중복되지 않도록 주의! -->
+	<input type="text" id="name" placeholder="id='name'"><br>
+	<input type="text" id="name2" placeholder="id='name2'"><br>
+	<input type="button" value = "확인" onclick="func1()"><br>
+	<hr>
+	<h3 id="header1">Header - 1</h3>
+	<h3 id="header2">Header - 2</h3>
+	<h4 id="header3">Header - 3</h4>
+	<!-- 하나의 태그에 id 선택자와 clas 선택자 등을 동시에 지정 가능 -->
+	<h4 id="header4">Header - 4</h4>
+	<hr>
+	<!-- class 선택자는 다른 선택자명과 중복 지정 가능(동시에 여러개의 대상 지정하는 용도) -->
+	<h3 class="header5">Header - 5_1</h3>
+	<h3 class="header5">Header - 5_2</h3>
+</body>
+</html>

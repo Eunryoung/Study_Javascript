@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	/*
+	DOM 객체(요소)를 탐색 및 접근하여 대상을 조작하는 방법 - 이벤트
+	- HTML 태그에 대한 자바스크립트 이벤트와 동일함
+	- 1) 대상 요소 지정하여 이벤트 처리를 수행하는 각각의 메서드를 호출하거나
+	     (ex. click(), submit() 메서드 등)
+	     => $(선택자).이벤트명(함수명 또는 function() {});
+	  2) on() 메서드 내에 이벤트 이름을 지정하여 각각의 이벤트를 처리 가능
+	     (ex. on("click"), on("submit") 등)
+	  	 => $(선택자).on("이벤트명", 함수명 또는 function() {});
+	  
+	
+	1. on("click") 메서드
+	   - 특정 대상을 "클릭" 시 동작하는 이벤트 처리(click() 메서드와 동일)
+	   - 클릭 대상에 대한 제한 없음(버튼이 아닌 요소도 가능)
+	
+	2. on("focus") 또는 on("blur") 메서드
+	   - 특정 대상에 포커스가 주어지거나 해제 시 동작하는 이벤트 처리
+	   - focus(), blur() 메서드와 동일
+	   - 클릭이 아닌 키보드 등을 통한 포커스 이동도 동일하게 취급됨
+	*/	
+	$(function(){
+		// 확인 버튼의 value 속성값 출력
+// 		alert($("input[type=button]:first").val()));
+// 		alert($("input[type=button]").eq(0).val());
+		
+		// 확인 버튼에 대한 클릭 이벤트 처리 => "확인 버튼 클릭!" 메세지 출력
+		// 1) click() 메서드 활용
+// 		$("input[type=button]").eq(0).click(함수명 또는 function() {});
+// 		$("input[type=button]").eq(0).click(function() {
+// 			console.log("확인 버튼 클릭!");
+// 		});
+		
+		// 2) on() 메서드 활용
+// 		$("input[type=button]").eq(0).on("click", function() {
+// 			console.log("확인 버튼 클릭222!");
+// 		});
+		
+		// 취소 버튼 클릭 시 "취소 버튼 클릭!" 메세지 출력
+// 		$("input[type=button]").eq(1).on("click", function() {
+// 			console.log("취소 버튼 클릭!");
+// 		});
+		
+		// -------------------------------------------------------
+		// 버튼을 지정하는 가상선택자 ":button" 활용 가능
+// 		$(":button").on("click", function() { // 순서지정 생략 시 모든 버튼 지정
+// 			alert("버튼 클릭!"); // 아무 버튼이나 클릭 시 "버튼 클릭!" 메세지 출력됨
+			
+			// $(this) 활용 시 클릭된 대상 요소 객체를 지정할 수 있음
+// 			alert($(this).val());
+			// => 클릭된 버튼(대상 요소)을 $(this)로 가리킴
+			// => 대상 객체(버튼)의 value 속성값("확인" or "취소")을 출력
+			
+			// 확인 or 취소 버튼 판별("XXX 버튼 클릭" 출력)
+// 			if($(this).val() == "확인"){
+// 				alert("확인 버튼 클릭!");
+// 			} else if($(this).val() == "취소") {
+// 				alert("취소 버튼 클릭!");
+// 			}
+// 		});
+		
+		// -------------------------------------------------------
+		// 확인 버튼(=첫번째 버튼) 클릭 시 이벤트 핸들링
+		// 입력받은 아이디, 패스워드, 선택된 교과목명을 textarea에 출력
+		// => textarea에 출력 시 val(), html(), text() 메서드 활용
+		$(":button").eq(0).on("click", function() {
+			let id = $("input[type=text]").val();
+			let passwd = $("input[type=password]").val();
+			let subject = $("#selectBox").val();
+			
+			$("#resultArea").val(
+				"아이디 : " + id + "\n"
+				+ "패스워드 : " + passwd + "\n"
+				+ "선택과목 : " + subject
+			);
+		}); // 버튼 클릭 이벤트 끝
+		
+		// textarea 클릭 이벤트 처리
+// 		$("#resultArea").on("click", function() {
+// 			alert("textarea 클릭됨!");
+// 		});
+		
+		// div 영역(id "clickDiv") 클릭 이벤트 처리
+		$("#clickDiv").on("click", function() {
+			alert("div 영역 클릭됨!");
+		});
+		
+		// textarea에 대한 focus, blur 이벤트
+		// => 포커스 위치할 때 textarea에 "textarea focus in" 메세지 출력하고
+		//	  포커스 아웃될 때 textarea에 "textarea focus out" 메세지 출력
+		$("#resultArea").on("focus", function() {
+			$(this).val("textarea focus in");
+		});
+		
+		$("#resultArea").on("blur", function() {
+			$(this).val("textarea focus out");
+		});
+		
+	}); // document 객체의 ready 이벤트 끝
+</script>
+</head>
+<body>
+	<h1>jQuery - test7.html</h1>
+	<div id="wrap">
+		<div id="input">
+			아이디 : <input type="text" name="id"><br>
+			패스워드 : <input type="password" name="passwd"><br>
+			<select id="selectBox" name="subject">
+				<option value="">선택하세요</option>
+				<option value="JAVA">JAVA</option>
+				<option value="JSP">JSP</option>
+				<option value="Spring Framework">Spring Framework</option>
+			</select>
+		</div>
+		<textarea rows="5" cols="20" id="resultArea"></textarea>
+		<br>
+		<input type="button" value="확인">
+		<input type="button" value="취소">
+	</div>
+	----------
+	<div id="clickDiv">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+	----------
+</body>
+</html>

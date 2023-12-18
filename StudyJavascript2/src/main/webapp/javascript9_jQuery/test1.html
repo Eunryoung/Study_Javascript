@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- jQuery 사용을 위해 외부 라이브러리 포함 필수! -->
+<!-- 1) jQuery 라이브러리 파일(jquery-3.x.x.js)을 다운로드 받아 직접 등록 => 외부 자바스크립트 파일 등록 방법 -->
+<!-- 2) jQuery 라이브러리를 CDN을 통해 전달받도록 src 속성에 CDN 서버 주소 사용 -->
+<script src = "../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	/*
+	[ jQuery 기본 문법 ]
+	jQuery(객체명 또는 선택자).메서드명();
+	=> 이 때, jQuery 객체명 대신 $ 기호로 대체 가능함
+	   ex) $(객체명 또는 선택자).메서드명();
+	--------------------------------------------------------------
+	[ document 객체의 ready 이벤트 ]
+	- HTML 문서의 DOM 객체가 로딩되면 자동으로 호출되는 이벤트
+	- 자바스크립트의 window.onload 와 비슷하나 호출되는 시점이 다름 
+	  => window.onload 이벤트 : 모든 페이지의 구성 요소들을 다 그린 후 호출됨
+	  => document 객체의 ready 이벤트 : DOM 트리 생성 완료 후 호출됨
+	  => 단, window 의 load 이벤트는 한 번만 호출 가능한 이벤트이지만
+	     document 의 ready 이벤트는 여러번 호출 가능한 이벤트
+	*/
+
+	// 자바스크립트에서 window 객체의 load 이벤트 핸들링
+// 	window.onload = function() {
+// 		console.log("window 객체의 load 이벤트!");
+// 	};
+
+	// ---------------------------------------------------------
+	// jQuery로 document 객체의 ready 이벤트 핸들링
+	// 1) 기본문법 - 1 (사용할 일 없음)
+// 	jQuery(document).ready(function() {
+// 		console.log("document 객체의 ready 이벤트! - 1");
+// 	});
+	
+	// 2) 기본문법 - 2
+	// 	  => jQuery 객체명 대신 $ 기호를 사용
+	//	  => document 객체의 ready 이벤트 외의 다른 객체(또는 선택자)에 대한 이벤트도 핸들링 가능
+// 	$(document).ready(function() {
+// 		console.log("document 객체의 ready 이벤트! - 2");
+// 	});
+	
+	// 3) 기본문법 - 3
+	// 	  => document 객체 지정 및 ready 이벤트 메서드 호출 과정 생략하고
+	//		 $(function() {}); 형식으로 압축
+	//	  => document 객체의 ready 이벤트 전용 핸들러
+	$(function() {
+		console.log("document 객체의 ready 이벤트! - 3");
+	});
+</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>테이블 만들기</h1>
+	<table border="3">
+		<th colspan="10"> 테이블 연습</th>
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+		</tr>
+	</table>
+	<hr>
+	<script type="text/javascript">
+		// 중첩 for문을 활용한 3행 4열의 테이블 만들기
+		document.write("<table border = '3'>"); // 테이블 생성(반복 X)
+		
+		document.write("<tr><th colspan = '4'> 테이블 연습 </th></tr>"); // 한 줄에 가능
+
+		// 바깥쪽 for문을 사용하여 1 ~ 3행 반복
+		// => 단, 반복 수행 전 반복문 내에서 사용할 열 데이터 값을 저장하는 변수 선언		
+		let count = 1; // 칸마다 들어갈 숫자 따로 지정. 초기값 1로 설정
+		
+		for(let i = 1; i <= 3; i++){
+			// 1행 당 <tr></tr> 태그 생성			
+			document.write("<tr>"); // 행 시작
+			
+			// 안쪽 for문을 사용하여 1 ~ 4열 반복
+			// 한 개 행에서 <tr> 태그 이후 <td></td> 태그 4번 반복			
+			for(let j = 1; j <= 4; j++){
+				// 1개 열 당 <tr></td> 태그 생성				
+				document.write("<td>" + count + "</td>"); // 열 반복
+				
+				// 1개 열 데이터 출력 후 count 변수 값 1 증가시킴				
+				count++;
+			}
+			
+			// 1개 행에서 4개의 열 반복이 끝난 후 1개 행 종료하는 </tr> 태그 작성			
+			document.write("</tr>") // 행 종료
+		}
+		// 3개 행 반복이 끝난 후 테이블 종료하는 </table> 태그 작성		
+		document.write("</table>"); // 테이블 생성 종료(반복 X)	
+		
+	</script>
+
+</body>
+</html>

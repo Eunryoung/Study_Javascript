@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function changeColor() {
+		// 배경색 변경 시 style.background 속성 활용 => "skyblue" 값 설정
+		document.querySelector("#name").style.background = "skyblue";
+	}
+	function changeColor2() {
+		// 배경색 변경 시 style.background 속성 활용 => "white" 값 설정
+		document.getElementById("name").style.background = "white";
+	}
+	function changeColor3(elem) {
+		// elem 변수를 통해 나이 입력창 태그(객체)에 접근 가능
+		elem.style.background = "skyblue";
+		
+		// 주의! 현재 함수 내에서 this 사용시 현재 함수 자체를 가리킴
+// 		this.style.background = "skyblue";
+	}
+	
+	function checkId() {
+		// id 선택자가 "id1"인 입력창의 value 속성값을 사용하여 입력값 접근 가능
+// 		alert(document.querySelector("#id1").value);
+// 		console.log(document.querySelector("#id1").value); // 개발자도구 - console 창에 출력
+		
+		// id 선택자가 "checkIdResult1"인 span 태그 영역 내부에 입력값 표시(출력)
+		// => innerText 또는 innerHTML 속성 활용		
+		let spanElem = document.querySelector("#checkIdResult1");
+// 		spanElem.innerHTML = document.querySelector("#id1").value;
+		
+		let id = document.querySelector("#id1").value;
+		
+		// 입력받은 아이디가 "admin"인지 판별
+		// => 만약, "admin"일 경우 span 태그 영역에 "사용 불가능한 아이디!" 출력(빨간색)
+		//	  아니면, "사용 가능한 아이디!" 출력(초록색)
+		//	  (텍스트 색상 변경은 style.color 속성 활용)
+		if(id == "admin") {
+			spanElem.innerHTML = "사용 불가능한 아이디!";
+			spanElem.style.color = "red";
+		} else {
+			spanElem.innerHTML = "사용 가능한 아이디!";
+			spanElem.style.color = "green";
+		}
+	}
+	
+	function checkId2(id) { // 입력된 아이디값이 파라미터 id 변수에 전달됨
+		console.log("change 이벤트 동작!");
+		let spanElem = document.querySelector("#checkIdResult2");
+		
+		if(id == "admin") {
+			spanElem.innerHTML = "사용 불가능한 아이디!";
+			spanElem.style.color = "red";
+		} else {
+			spanElem.innerHTML = "사용 가능한 아이디!";
+			spanElem.style.color = "green";
+		}
+	}
+	
+	function checkId3(id) { // 입력된 아이디값이 파라미터 id 변수에 전달됨
+		console.log("blur 이벤트 동작!");
+		let spanElem = document.querySelector("#checkIdResult3");
+		
+		if(id == "admin") {
+			spanElem.innerHTML = "사용 불가능한 아이디!";
+			spanElem.style.color = "red";
+		} else {
+			spanElem.innerHTML = "사용 가능한 아이디!";
+			spanElem.style.color = "green";
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<h1>test27.html</h1>
+	<!--  이름 입력창에 포커스 위치(focus) 입력창 색상을 "skyblue"로 변경 -->
+	<!--  이름 입력창에 포커스 해제(blur) 입력창 색상을 "white"로 변경 -->
+	이름 : <input type="text" id="name" onfocus="changeColor()"onblur="changeColor2()"><br>
+	<!-- HTML 태그 내의 이벤트에서 this 사용시 해당 태그 자체를 가리키므로 -->
+	<!-- 파라미터에 전달 시 태그 객체를 전달하고, 직접 사용 시 현재 태그 객체에 접근 -->
+	나이 : <input type="text" id="age" 
+				onfocus="changeColor3(this)" onblur="this.style.background = 'white';"><br>
+	<hr>
+	<!-- 입력받은 아이디를 검증하여 결과를 span 태그 영역에 출력하기 -->
+	<!-- keyup : 키보드를 눌렀다 뗄 때 동작 -->
+	아이디(keyup) : <input type="text" id="id1" onkeyup="checkId()"><br>
+	<span id="checkIdResult1"></span><br>
+	
+	<!-- change : 대상 요소의 포커스를 잃을 때 value 속성값이 변경되면 동작 -->
+	<!-- checkId2() 함수 호출 시 현재 입력된 값(value 속성값)을 전달할 수도 있다! -->
+	아이디(change) : <input type="text" id="id2" onchange="checkId2(this.value)"><br>
+	<span id="checkIdResult2"></span><br>
+	
+	<!-- blur : 대상 요소의 포커스를 잃을 때 동작(값 변경과 무관) -->
+	아이디(blur) : <input type="text" id="id3" onblur="checkId3(this.value)"><br>
+	<span id="checkIdResult3"></span><br>
+</body>
+</html>

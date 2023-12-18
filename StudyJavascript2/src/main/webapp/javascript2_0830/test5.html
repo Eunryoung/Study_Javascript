@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 변수 a 선언 및 정수 10으로 초기화
+		let a = 10;
+// 		a++; // 변수 a의 값을 1만큼 증가
+// 		document. write("a = " + a); // a = 11
+
+		let b = a++ + 5;
+		// => a++은 후행연산자로, 다른 연산에 먼저 피연산자를 참여시킨 후 피연산자 값을 변화
+		//    즉, a + 5 를 먼저 처리한 후 a 값을 변수 b 에 저장한 뒤 a 값을 1 만큼 증가시킴
+		document.write("a = " + a + ", b = " + b); // a = 11, b = 15
+		document.write("<hr>");
+		
+		let a2 = 10;
+		let b2 = ++a2 + 5;
+		// => ++a2 는 선행연산자로, 다른 연산에 참여하기 전 피연산자 값을 변화시킨 후 연산에 참여
+		//    즉, a2값을 먼저 1만큼 증가시킨 후 a2 + 5 연산 수행하고, 결과값을 b2 에 저장
+		document.write("a2 = " + a2 + ", b2 = " + b2); // a = 11, b = 16
+		document.write("<hr>");
+		
+		let c = 10;
+		// 변수 c의 값을 1만큼 증가시키는 방법 3가지
+		c = c + 1; // 산술연산 결과를 다시 변수에 저장하는 방법
+		document.write("c = " + c + "<br>");
+		c += 1; // 확장 대입연산자 => c = c + 1 과 동일
+		document.write("c = " + c + "<br>");
+		c++; // 증감연산자
+		document.write("c = " + c + "<br>");
+		document.write("<hr>");
+
+		// 비교연산자(관계연산자)를 통한 문자열의 크기 비교
+		// => 각각의 문자를 차례대로 아스키코드 형태로 비교
+		//    (기본 아스키코드 : "A"(65), "a"(97), "0"(48))		
+		document.write("javascript" > "Javascript");
+		// => 첫글자부터 차례대로 비교 시 소문자 j 가 대문자 J 보다 크므로 true
+		
+		document.write("Javascript" > "javascript");
+		// => 대문자 J 가 소문자 j 보다 크지 않으므로 false
+		
+		document.write("<hr>");
+
+		document.write(2 == "2"); // 문자열 "2"를 정수 2로 변환하여 일치시킨 후 연산 = true
+		document.write("<br>");
+		document.write(2 > "2"); // 문자열 "2"를 정수 2로 변환하여 일치시킨 후 연산 = false
+		document.write("<br>");
+		
+		document.write(2 === "2"); // 값은 동일하지만 타입이 서로 다르므로 false
+		document.write("<br>");
+		document.write("2" === "2"); // 값도 동일하고 타입도 동일하므로 true
+		document.write("<br>");
+		
+		document.write(2 + "2"); // 연결연산자로 사용되어 2 + "2"는 문자열 결합 "22"
+		document.write("<br>");
+		document.write(2 - "2"); // 산술연산 시 정수로 변환하여 2 - 2 = 0 
+		document.write("<br>");
+
+	</script>
+</body>
+</html>

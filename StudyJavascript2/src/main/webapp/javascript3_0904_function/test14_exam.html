@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// [ 전달인자는 없고, 리턴값만 있는 함수 연습 ]
+	// 1. "Hello, World!" 문자열을 리턴하는 getMessage() 함수 정의
+	function getMessage(){
+		return "Hello, World!";
+	} // getMessage() 함수 끝
+	
+	// 2. 1 ~ 10 까지의 합을 계산하여 리턴하는 getTotal() 함수 정의
+	function getTotal(){
+		let total = 0;
+		
+		for(let i = 1; i <= 10; i++){
+			total += i; // total = total + i;
+		}
+		
+		// 계산 결과를 직접 출력하지 않고 외부로 리턴
+		return total;
+	} // getTotal() 함수 끝
+
+	
+	// ===============================================================
+	// 1. getMessage() 함수를 호출하여 리턴받은 문자열을 변수 data에 저장 후 출력
+	let data = getMessage();
+	document.write("리턴 값 : " + data);
+	document.write("<hr>")
+	
+	// 2. getTotal() 함수를 호출하여 1~10까지의 합을 리턴받아 출력
+	document.write("1 ~ 10까지 정수의 합 : " + getTotal());
+	document.write("<hr>");
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

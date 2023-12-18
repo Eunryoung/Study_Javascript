@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		//---------------- 연습 문제 ---------------------
+		// 사용자로부터 숫자 1개를 입력받아 변수 inputNum에 저장 후
+		// 입력받은 숫자가 3의 배수인지 판별
+		// => 만약, 3의 배수일 경우 "3의 배수!" 출력, 아니면 "3의 배수가 아님!" 출력
+		
+// 		let inputNum = prompt("숫자를 입력하세요.");
+// 		if((inputNum % 3) == 0){
+// 			document.write("3의 배수!<br>");
+// 		} else{
+// 			document.write("3의 배수가 아님!<br>");
+// 		}
+		
+		// ---------------- 연습 문제 ---------------------
+		// "종료하시겠습니까?" 메세지를 출력하면서 사용자로부터 확인/취소 버튼 입력 받기
+		// => 만약 확인 버튼을 클릭했을 경우 "종료합니다!" 출력, 아니면 "취소합니다!" 출력
+		// => isExit 변수값이 true 인지 아닌지 판별
+		
+// 		let isExit = confirm("종료하시겠습니까?");
+		
+// 		if(isExit) { // if(isExit == true) 와 동일
+// 		// => if(isExit == true){로 하면 판별문이 이중으로 들어감, boolean타입에만 적용
+// 		// => (isExit == false)라고 안 씀 (!isExit)로 쓰세용
+		
+// 			document.write("종료합니다!<br>");
+// 		} else {
+// 			document.write("취소합니다!<br>");
+// 		}
+		
+// 		if(!isExit) {} // if(isExit == false) 와 동일		
+		
+// 		document.write("<hr>");
+		
+		// ---------------- 연습 문제 ---------------------
+		// 사용자로부터 숫자 1개를 입력받아 변수 inputNum에 저장 후
+		// 입력받은 숫자가 3의 배수인지 판별(3으로 나눈 나머지가 0)
+		// => 단, 입력받은 숫자가 없을 경우(=입력 없이 확인 버튼 클릭했을 경우 = 널스트링"")
+		//	  알림창을 통해 "숫자를 입력하세요!" 출력하고
+		//	  아니면, 취소 버튼을 클릭했을 경우(= null) "취소합니다!" 출력
+		// => 만약, 3의 배수일 경우 "3의 배수!" 출력, 아니면 "3의 배수가 아님!" 출력
+		
+// 		let inputNum = prompt("숫자를 1개 입력하세요.");
+// 		document.write("입력값 : " + inputNum + "<br>");	
+
+		// 주의! null값 또는 널스트링("") 값을 먼저 판별한 후 나머지 판별해야 함
+		// => 값을 먼저 비교할 경우 올바른 판별이 이루어지지 않을 수도 있다!
+// 		if(inputNum == "") { // 아무것도 입력하지 않고  확인 버튼 클릭 시
+// 			alert("숫자를 입력하세요!");
+// 		} else if(inputNum == null) { // 취소 버튼 클릭 시
+// 			document.write("취소합니다!<br>");
+// 		} else if((inputNum % 3) == 0) {
+// 			document.write("3의 배수!<br>");
+// 		} else {
+// 			document.write("3의 배수가 아님!<br>");
+// 		}
+
+		// 중첩 if문을 활용하여 값이 입력됐을 때
+		// 해당 블록 내에서 입력된 값에 대한 판별을 추가로 수행해도 된다!
+// 		if(inputNum == "") { // 아무것도 입력하지 않고  확인 버튼 클릭 시
+// 			alert("숫자를 입력하세요!");
+// 		} else if(inputNum == null) { // 취소 버튼 클릭 시
+// 			document.write("취소합니다!<br>");
+// 		} else { // 값을 입력했을 경우
+// 			// 3의 배수 여부와 관계없이 공통 작업을 수행할 수도 있다!
+// 			document.write("값이 입력됨!");
+
+
+// 			// 3의 배수 여부 판별
+// 			if((inputNum % 3) == 0) {
+// 				document.write("3의 배수!<br>");
+// 			} else {
+// 				document.write("3의 배수가 아님!<br>");
+// 			}
+// 		}
+		
+		document.write("<hr>");
+
+	// ====================================
+	// 나이(age)를 입력받아 if문으로 판별
+	// 1) 10대인지 여부를 판별
+	//	 => 10대? 나이가 10 이상이고, 19 이하일 경우 true
+// 		let age = prompt("나이를 입력하세요");
+	
+// 		if(age >= 10 && age <= 19) {
+// 			document.write(age + " : 10대 입니다.<br>");
+// 			} else {
+// 				document.write(age + " : 10대가 아닙니다.<br>");
+// 			}
+	
+	// 2) 놀이동산 무료입장 가능 여부를 판별
+	//	=> 나이가 5세 미만이거나, 65세 이상일 경우 true
+// 		let age = prompt("나이를 입력하세요");
+// 		if(age < 5 || age >= 65) {
+// 			document.write(age + " : 무료입장이 가능합니다.<br>");
+// 			} else {
+// 				document.write(age + " : 무료입장이 불가능합니다.<br>");
+// 			}
+	
+	// 3) 놀이동산 입장료 계산
+	// => 조건1. 기본 입장료 50000원(변수 fee에 저장)
+	// => 조건2. 5세 미만이거나, 65세 이상일 경우 입장료 100% 할인(0원)
+	// => 조건3. 10대일 경우 입장료 50% 할인(25000원)
+	// => 조건4. 20대일 경우 입장료 30% 할인(35000원)
+	
+		document.write("나이 : " + age + "세<br>");	
+	
+		let fee = 50000; // 기본 입장료
+		let age = prompt("나이를 입력하세요");
+	
+		if(age < 5 || age >= 65) {  // 무료 입장 대상 판별
+			document.write(age + "세의 입장료는 " + (fee * 0) + " 원 입니다.<br>");
+			} else if(age >= 10 && age <= 19) {  // 50% 할인 대상 판별
+			document.write(age + "세의 입장료는 " + (fee * 0.5) + " 원 입니다.<br>");
+			} else if(age >= 20 && age <= 29) {  // 30% 할인 대상 판별
+				document.write(age + "세의 입장료는 " + (fee * 0.7) + " 원 입니다.<br>");
+			} 
+		
+			document.write(age + "세의 입장료는 " + fee + " 원 입니다.<br>");
+
+	</script>
+</body>
+</html>

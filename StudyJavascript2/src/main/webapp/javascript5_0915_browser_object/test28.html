@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function changeImage() {
+		document.querySelector("#img").src = "2.jpg";
+	}
+	
+	function recoveryImage() {
+		document.querySelector("#img").src = "1.jpg";
+	}
+	
+	// 문서가 로딩될 때 이미지 교체를 위해 <img> 태그 객체를 가져오기
+// 	let btnChangeImg = document.querySelector("#img");
+// 	console.log(btnChangeImg); // null;
+	// => 위의 코드가 실행되는 시점이 body 태그 내의 요소들이 로딩되기 전이므로
+	//	  특정 대상 요소 지정 시 null 값이 리턴되어 해당 요소 접근 불가
+	// => 해결방법 1) 해당 요소 아래쪽에서 스크립트 실행
+	//    ---------------------------------------------------------------------------------
+	// => 해결방법 2) body 영역 요소 로딩 지점보다 위쪽 코드에서 해당 요소에 접근해야할 경우
+	//				  body 영역 로딩 완료 후 접근할 수 있도록 load 이벤트를 활용해야한다!
+	//                (또는 버튼 클릭 등의 이벤트로 처리도 가능)
+	// 2-1) body 태그에 onload 속성으로 이벤트 연결하여 함수 호출
+	function changeImage() {
+		
+		let img = document.querySelector("#img");
+	 	console.log(img);
+	 	alert(img);
+	 	
+		img.src = "2.jpg";
+
+		// onload 이벤트에 의해 호출될 경우
+		// body 영역 요소들의 로딩이 끝난 후 현재 함수가 호출되므로
+		// body 태그 내의 요소들보다 스크립트가 위에 위치하더라도 실행될 수 있다!
+	}
+	// ----------------------------------------------------
+	// 2-2) body 태그 onload = "changeImage()" 이벤트 지정 대신
+	//      window 객체의 onload 속성을 활용하여 동일한 이벤트 지정 가능
+	//      <기본문법> : window.onload = 함수명;
+	//      주의! onload 속성에 함수 전달 시 소괄호()는 명시하지 않는다!
+	//      (즉시 함수를 실행할 것이 아니라 onload 속성에 전달할 목적이기 때문)
+// 	window.onload = changeImage;
+	
+	// 만약, 특정 함수 실행 코드가 특정 이벤트 전용으로 사용되어질 경우
+	// 함수 이름이 없는 익명함수 형태로 이벤트에 전달 가능하다!
+	// => 단, 이름이 없으므로 외부에서 이 함수를 호출할 수 없다!(= 재사용 불가)
+	// < 기본 문법 > window.onload = function() { 함수 실행 코드... }
+	window.onload = function() { // onload 이벤트 전용 함수로 사용됨
+		let img = document.querySelector("#img");
+// 	 	console.log(img);
+// 	 	alert(img);
+
+		// 문서 로딩 완료 시 이미지를 2.jpg로 교체
+// 		img.src = "2.jpg";
+		
+		let btnChangeImg = document.querySelector("#btnChangeImg");
+		console.log(btnChangeImg);
+		
+		// HTML 태그에서 onXXX 속성으로 이벤트 연결이 가능하지만
+		// 자바스크립트에서도 대상 요소에 대해 이벤트 연결 처리가 가능하다!
+		// < 기본 문법 > 대상요소객체.onXXX = 실행할 함수명;
+		// 이미지교체 버튼(btnChangeImg 변수에 저장된 객체) 클릭했을 때 이벤트 처리
+		btnChangeImg.onclick = changeImage; // 주의! 소괄호 명시하지 말 것!
+		
+		// -------------------------
+		// 이미지복원 버튼 클릭 시 이벤트 처리
+// 		document.querySelector("#btnRecoveryImg").onclick = recoveryImage;
+		// => 익명함수를 사용하여 src 속성값을 1.jpg로 변경
+		document.querySelector("#btnRecoveryImg").onclick = function() {
+			document.querySelector("#img").src = "1.jpg";
+		};
+		
+		// ------------------------------------------------
+		// id 선택자 "name" 요소에 focus, blur 이벤트 연결
+		// => 익명 함수를 사용하여 각각의 이벤트 핸들링(=처리)
+		// => 포커스 요청 시 요소의 배경색을 "skyblue"로 변경하고
+		//	  포커스 해제 시 "white" 또는 ""으로 변경
+		document.querySelector("#name").onfocus = function() {
+			document.querySelector("#name").style.background = "skyblue";
+		};
+		document.querySelector("#name").onblur = function() {
+			document.querySelector("#name").style.background = "";
+		};
+		
+		// <T 해설: id 선택자 "name" 요소 두 번 써야하니 변수 지정>
+		
+// 		let elemName = document.querySelector("#name");
+// 		elemName.onfocus = function() {
+// 			elemName.style.background = "skyblue";
+// 		};
+		
+// 		elemName.onblur = function() {
+// 			elemName.style.background = "white";	
+// 			elemName.style.background = ""; // 기본값으로 설정(브라우저 기본값)
+// 		};
+		
+	}; // window.onload 이벤트에 대한 익명함수 끝
+</script>
+</head>
+<!-- <body onload="changeImage()"> body 영역 로딩이 끝나면 changeImage() 함수 자동 호출됨 -->
+<body>
+	<h1>test28.html</h1>
+	<!-- 이미지 버튼 클릭 시 2.jpg 표시, 이미지 복원 버튼 클릭 시 1.jpg로 표시 -->
+	<img src ="1.jpg" id="img" width="200" height="150"><br>
+	<input type="button" id="btnChangeImg" value="이미지교체" > 
+	<input type="button" id="btnRecoveryImg" value="이미지복원"> 
+	
+	<hr>
+	
+	이름 : <input type="text" id="name">
+	
+	<script type="text/javascript">
+		// img 태그 아래쪽에서 스크립트를 실행하여 해당 요소를 객체로 다룰 수 있다!
+// 		let btnChangeImg = document.querySelector("#img");
+// 		console.log(btnChangeImg);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>document 객체 기초</title>
+<script type="text/javascript">
+	/*
+	[ window 객체의 하위 객체 - document ]
+	- HTML 문서 정보(내용)를 관리하는 객체
+	- 문서 정보 확인, 내용 변경 등의 작업 수행 가능
+	- 속성 : title, bgColor, fgColor 등
+	- 메서드 : write() 등
+	*/
+	function func1() {
+		// HTML 문서 제목(title 태그 내용) 확인
+		alert(document.title); // 팝업창(알림창)을 통해 메세지 출력
+// 		document.write(document.title); // 문서 자체에 메세지 출력
+	}
+	
+	function func2() {
+		// HTML 문서 제목 변경(=브라우저 제목표시줄 내용 변경 = title 속성값 변경)
+		document.title = "변경된 title";
+	}
+	
+	function func3() {
+		// HTML 문서 색상 정보 확인
+		alert("bgColor : " + document.bgColor + "\nfgColor : " + document.fgColor);
+		// => bgColor, fgColor 값을 별도로 설정한 적이 없으면 널스트링("") 값이 기본으로 출력
+	}
+	
+	function func4() {
+		// HTML 문서 색상 정보 변경
+		// => 변경할 속성값으로 "색상명" 또는 색상코드값("#RRGGBB") 형태로 지정
+		// 1. 색상명 지정 방식(대소문자 무관)
+// 		document.bgColor = "YELLOW"; // 배경색 "YELLOW"(노란색) 변경
+// 		document.fgColor = "blue"; // 전경색(= 주로 텍스트) "blue"(파란색) 변경
+
+		// 2. 색상코드값 지정 방식(디테일한 색상 지정 가능)
+		// => "#RRGGBB" 형식으로 지정(R : RED, G : GREEN, B : BLUE 세 가지 색상 조합)
+		// => 각 색상값을 16진수 2자리(00 ~ FF)값으로 사용(빛의 3원색 원리와 동일)
+// 		document.bgColor = "#FF0000"; // 빨간색 = "RED"
+// 		document.fgColor = "#00FF00"; // 초록색 = "GREEN" 
+		document.bgColor = "#FFFF00"; // 노란색 = "YELLOW"
+// 		document.fgColor = "#000000"; // 검정색 = "BLACK"
+		document.fgColor = "#FFFFFF"; // 흰색 = "WHITE"
+	}
+	<!-- T 해결책 -->
+	function func5(color) {
+		// 파라미터로 전달받은 색상을 사용하여 배경색(bgColor 속성값) 변경
+		document.bgColor = color;
+	}
+	
+</script>
+</head>
+<body>
+	<h1>test22.html - document</h1>
+	<input type="button" value="문서 제목 출력" onclick="func1()"><br>
+	<input type="button" value="문서 제목 변경" onclick="func2()"><br>
+	<input type="button" value="문서 색상 출력" onclick="func3()"><br>
+	<input type="button" value="문서 색상 변경" onclick="func4()"><br>
+	
+	<hr>
+	
+	<!-- 라디오버튼을 사용하여 선택된 라디오버튼(CYAN, MAGENTA, GRAY)의 색상으로 배경색 변경하기
+	클릭(선택) 시 func5() 함수 호출하여 색상명을 전달하고, 함수에서 해당 색상으로 배경색 변경 -->
+	
+	<!-- T : 새로운 함수 설정 -->
+	<input type = "radio" name = "bgColor" onclick = "func5('CYAN')">CYAN
+	<input type = "radio" name = "bgColor" onclick = "func5('MAGENTA')">MAGENTA
+	<input type = "radio" name = "bgColor" onclick = "func5('GRAY')">GRAY
+	
+	<!-- me : 바로 지정 -->
+<!-- 	<input type ="radio" name = "bgColor" onclick = "document.bgColor = 'cyan'"><label for = "cy">CYAN</label> -->
+<!-- 	<input type ="radio" name = "bgColor" onclick = "document.bgColor = 'magenta'"><label for = "ma">MAGENTA</label> -->
+<!-- 	<input type ="radio" name = "bgColor" onclick = "document.bgColor = 'gray'"><label for = "gr">GRAY</label> -->
+</body>
+</html>

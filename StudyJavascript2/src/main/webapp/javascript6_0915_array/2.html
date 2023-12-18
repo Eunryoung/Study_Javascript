@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 배열(Array) 객체에서 제공하는 다양한 메서드
+	let arrNum = [1, 2, 3];
+	let arrStr = ["a", "b", "c", "d", "e"];
+	document.write("arrNum = " + arrNum + "<br>");
+	document.write("arrStr = " + arrStr + "<br>");
+	document.write("<hr>");
+	
+	
+	// 1. push() : 배열 내의 맨 마지막 인덱스로 새 데이터 추가
+	let arrNumSize = arrNum.push(4); // arrNum의 맨 뒤에 정수 4 추가 후 새 배열 크기 리턴
+	document.write("arrNum = " + arrNum + ",arrNum.length = " + arrNum.length + "<br>");
+	
+	// 2. unshift() : 배열 내의 맨 처음 인덱스로 새 데이터 추가(기존 데이터 뒤로 밀림)
+	arrNumSize = arrNum.unshift(0); // arrNum 의 맨 앞에 정수 0 추가 후 새 배열 크기 리턴
+	document.write("arrNum = " + arrNum + ",arrNum.length = " + arrNum.length + "<br>");
+	// => 1번, 2번 메서드 모두 해당 배열을 직접 변경함(새로운 배열이 생성되는 것이 아니다!)
+	// ----------------------------------------------------------------------------------
+	
+	// 3. pop() : 배열 내의 맨 마지막 인덱스 요소 꺼내서 리턴(배열 내의 해당 데이터는 제거됨)
+	let popResult = arrNum.pop();
+	document.write("pop() 호출 시 리턴되는 데이터 : " + popResult + "<br>");
+	document.write("arrNum = " + arrNum + ", arrNum.length = " + arrNum.length + "<br>");
+	
+	// 4. shift() : 배열 내의 맨 처음 인덱스 요소 꺼내서 리턴(배열 내의 해당 데이터는 제거됨)
+	let shiftResult = arrNum.shift();
+	document.write("shift() 호출 시 리턴되는 데이터 : " + shiftResult + "<br>");
+	document.write("arrNum = " + arrNum + ", arrNum.length = " + arrNum.length + "<br>");
+	
+</script>
+</head>
+<body>
+	
+</body>
+</html>

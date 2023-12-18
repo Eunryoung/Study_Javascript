@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	switch - case 문
+	- if 문과 달리 식에 올 수 있는 대상은 결과가 정수, 문자열만 가능
+	- case 문은 순서와 상관없이 값이 서로 중복되지 않도록 지정
+	- default 문은 if문에서 else 문의 역할을 수행하며, 생략도 가능
+	- 주의! switch 문 내에서 case 문 실행 시 break 문을 만나면 switch 문을 종료하지만
+	  break 문이 없을 경우 다음 break 문을 만나거나 switch 문이 끝날 때 까지
+	  case 문과 default 문의 모든 실행문을 차례대로 실행함(조건과 무관하게 실행됨) 
+	
+	< 기본 문법 >
+	switch(식){
+		case 값1 : 
+			// 판별 변수가 값1과 일치할 경우 실행할 문장들...
+			[break;]
+		case 값2 :
+			// 판별 변수가 값2와 일치할 경우 실행할 문장들...
+			[break;]
+		[default: // 일치하는 case문이 없을 경우 실행할 문장들...]
+	}
+	*/
+	
+	let session = prompt("관심 세션을 선택해 주세요. \n1 - 마케팅, 2 - 개발, 3 - 디자인");
+	// 주의! 입력받는 모든 데이터는 문자열(string) 타입으로 취급되므로
+	// 숫자 입력 후 switch 문 식에 전달 후 값 비교 시 문자열 형태로 비교해야한다!	
+	switch(session){
+		case "1" :  // 주의! 정수 1이 아닌 문자 "1" 형태로 case 문을 지정해야한다! 
+			document.write("<p>마케팅 세션은 <b>201호</b> 입니다.");
+			break; // 값이 "1" 일 때 문장 실행 후 switch 문을 빠져나감
+		case "2" : 
+			document.write("<p>개발 세션은 <b>203호</b> 입니다.");
+			break;
+		case "3" : 
+			document.write("<p>디자인 세션은 <b>205호</b> 입니다.");
+			break;
+		default : 
+			alert("선택 항목이 잘못 입력되었습니다!");
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

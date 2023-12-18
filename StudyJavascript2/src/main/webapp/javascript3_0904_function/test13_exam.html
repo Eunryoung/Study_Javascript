@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">	
+	// [ 전달인자도 없고, 리턴값도 없는 함수 연습 ]
+	// 1. "Hello, World!" 문자열을 출력하는 hello() 함수 정의
+	function hello() {
+		// hello() 함수 호출 시 실행할 코드들...		
+		document.write("Hello, World!<br>");
+	} // hello() 함수 끝
+	
+	// -------------------------------------------------
+	// 2. "Hello, World!" 문자열을 10번 출력하는 hello2() 함수 정의
+	function hello2() {
+		for(let i = 1; i <= 10; i++){
+			document.write(i + " : Hello, World!<br>");
+		}
+	}
+	
+	// --------------------------------------------
+	// 3. <hr> 태그를 출력하는 hr() 함수 정의
+	function hr() {
+		document.write("<hr>");
+	}
+	
+	// --------------------------------------------------------
+	// 4. sum() 함수 정의
+	// => 1 ~ 10까지 정수의 합을 계산하여 결과값(55) 출력
+	
+	function sum() {
+		let total = 0; // 누적변수 선언
+		
+		for(i = 1; i <= 10; i++) {
+			total += i;
+		}
+		document.write("1 ~ 10까지 정수의 합 : " + total);
+		document.write("<hr>");
+	}
+	
+	// ------------------------------------------------------
+	// 5. 구구단 2단을 출력하는 gugudan() 함수
+	function gugudan(){
+		let dan = 2;
+		
+		document.write(" < 구구단 " + dan + "단 > <br>");
+		
+		for(let num = 1; num <= 9; num++){
+			document.write(dan + " * " + num + " = " + (dan * num) + "<br>");
+		}
+	}
+	
+	// ------------------------------------------------------
+	/*
+	[ 6. 숫자 맞추기 게임을 수행하는 number_game() 함수 정의 ]
+	1. 정수 1개를 입력받기 
+	// ---------------------------------------
+	2. 기존에 저장된 정수와 비교하여 일치 여부를 확인한 후
+	   1) 입력받은 숫자가 정답보다 작을 경우 : "입력한 숫자는 정답보다 작습니다!" 출력
+	   2) 입력받은 숫자가 정답보다 클 경우 : "입력한 숫자는 정답보다 큽니다!" 출력
+	   3) 입력받은 숫자가 정답과 같을 경우 : "정답입니다!" 출력
+	// ---------------------------------------
+	=> 이 때, 정답이 되기까지 입력한 횟수를 계산하여 "x번만에 정답입니다!" 출력
+	
+	ex) 저장된 숫자(정답) : 5, 입력받은 숫자 : 10
+	    "입력한 숫자는 정답보다 큽니다!" 출력
+	ex2) 저장된 숫자(정답) : 5, 입력받은 숫자 : 3
+   		"입력한 숫자는 정답보다 작습니다!" 출력
+	ex2) 저장된 숫자(정답) : 5, 입력받은 숫자 : 5
+   		"정답입니다!" 출력
+	*/
+	
+	function number_game(){
+		let correctNum = 10; // 정답
+		let count = 0; // 입력 횟수를 카운팅 할 변수(입력받을 때마다 1씩 증가)
+		
+		// ---------------------정답일 때까지 반복하는 방법 1) ------------------
+		let isCorrect = false; // 정답 여부를 기록할 변수(true: 정답, false : 오답)
+				
+		
+		// isCorrect 값이 false 일 동안 반복(오답일 동안 반복)
+		while(!isCorrect){ // !isCorrect는 isCorrect == false와 동일
+			// => while 소괄호 안의 조건문이 true여야 반복실행
+			// 사용자로부터 정수 1개 입력받기
+			let num = prompt("정수 1개를 입력하세요.");
+// 			document.write("입력받은 정수 : " + num);			
+		
+			// 입력 횟수 1 증가
+			count++;
+			
+			// 기존에 저장된 정답(correctNum)과 비교하여 결과 출력
+			if(num < correctNum) { // 정답보다 작을 경우
+					alert(num + " : 정답보다 작습니다!");
+				} else if(num > correctNum) { // 정답보다 클 경우
+					alert(num + " : 정답보다 큽니다!");
+				} else { // 같을 경우
+					alert(num + " : 정답입니다!");
+					// 정답일 경우 입력 횟수 출력				
+					document.write("숫자 입력 횟수 : " + count + "<br>");
+					// 정답 여부를 기록하는 isCorrect 변수값을 true로 변경
+					// => 다음 반복 여부 결정 시 isCorrect가 true이면 반복문이 종료됨
+					isCorrect = true; 
+			}
+			
+		} // while문 끝	
+		
+		document.write("숫자 게임 종료!<br>");
+		
+	} // number_game() 함수 끝
+	
+//내 코드
+// 		let correctNum = 10; // 정답
+// 		let count = 0;
+// 		let inputNum = prompt("숫자 하나를 입력하세요.");
+		
+// 		if(inputNum < correctNum){
+// 			alert("입력한 숫자는 정답보다 작습니다.");
+// 			count++;
+// 		}else if(inputNum > correctNum){
+// 			alert("입력한 숫자는 정답보다 큽니다.");
+// 			count++;
+// 		}else{
+// 			document.write(count + "번만에 정답입니다!");}
+		
+// 박가코드	
+// 		while(inputNum != correctNum){
+// 			inputNum = prompt("숫자 하나를 입력하세요.");
+// 			if(inputNum < correctNum){
+// 				alert("입력한 숫자는 정답보다 작습니다.");
+// 			}else if(inputNum > correctNum){
+// 				alert("입력한 숫자는 정답보다 큽니다.");
+// 			}
+// 		count++;
+// 		}
+// 	document.write(count + "번만에 정답입니다!");
+// 	}
+		
+	
+	// ======================================================
+	// 1. hello() 함수 호출
+// 	hello();
+// 	document.write("<hr>");
+	// hr() 함수를 호출하여 <hr> 태그 한 줄 출력
+	hr();
+	
+	// 2. hello2() 함수 호출
+// 	hello2();
+// 	hr();	
+	
+	// 3. sum() 함수 호출
+// 	sum();
+// 	hr();
+	
+	// 4. gugudan() 함수 호출
+// 	gugudan();
+	
+	// 5. number_game() 함수 호출
+	number_game();
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function changeImage() {
+// 		document.querySelector("#img").src = "2.jpg";
+		let img = document.querySelector("#img");
+// 		alert(img);
+		img.src="2.jpg";
+	}
+	function recoveryImage() {
+		document.querySelector("#img").src = "1.jpg";
+	}
+	
+// 	let a = document.querySelector("#img");
+// 	console.log(a);
+
+// 	window.onload = changeImage;
+	window.onload = function() {
+		let img = document.querySelector("#img");
+// 		alert(img);
+// 		console.log(img);
+// 		img.src = "2.jpg";
+		
+		let btnChangeImg = document.querySelector("#btnChangeImg");
+		console.log(btnChangeImg);
+		btnChangeImg.onclick = changeImage;
+		
+// 		document.querySelector("#btnRecoveryImg").onclick = recoveryImage;
+		document.querySelector("#btnRecoveryImg").onclick = function() {
+			document.querySelector("#img").src = "1.jpg";
+		};
+		
+		// -----------------------------------------
+// 		document.querySelector("#name").onfocus = function() {
+// 			document.querySelector("#name").style.background = "skyblue";
+// 		};
+// 		document.querySelector("#name").onblur = function() {
+// 			document.querySelector("#name").style.background = "";
+// 		};
+		let elemName = document.querySelector("#name");
+		elemName.onfocus = function() {
+			elemName.style.background="yellow";
+		};
+		elemName.onblur = function() {
+			elemName.style.background="green";
+		};
+	};
+</script>
+</head>
+<!-- <body onload="changeImage()"> -->
+<body>
+	<img src="1.jpg" id="img" width="200" height="150"><br>
+	<input type="button" id="btnChangeImg" value="이미지교체">
+	<input type="button" id="btnRecoveryImg" value="이미지복원">
+	
+	<hr>
+	
+	이름 : <input type="text" id="name">
+	<script type="text/javascript">
+// 	let a = document.querySelector("#img");
+// 	console.log(a);
+	</script>
+</body>
+</html>

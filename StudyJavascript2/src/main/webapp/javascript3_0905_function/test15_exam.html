@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// [ 전달인자o, 리턴값x 함수 연습 ]
+	// 1. 정수 1개(count)를 전달 받아 "Hello, World!" 문자열을 전달받은 횟수만큼 출력하는
+	// 	  함수 printHello() 정의
+	function printHello(count) {
+		for(let i = 1; i <= count; i++){
+			document.write(i + " : Hello, World!<br>");
+		}
+	}
+	
+	// 2. 정수 1개(x)를 전달받아 1~x까지 합을 계산하여 출력하는 함수 sum() 정의
+	
+	function sum(x) {
+		let total = 0;
+	
+		for(i = 1; i <= x; i++){
+			total += i;
+		}
+		document.write("1 ~ " + x + "까지의 합은 " + total + "<br>");
+	}
+	
+	// 3. 전달받은 정수에 해당하는 구구단을 출력하는 gugudan() 함수
+	// e.g. 2 전달받으면 2단, 5 전달받으면 5단 출력
+	function gugudan(dan) { //
+		document.write(" < 구구단 " + dan + "단 > <br>");
+		for(let num = 1; num <= 9; num++){
+			document.write(dan + " * " + num + " = " + (dan * num) + "<br>");
+		}
+	}
+	
+	document.write("<hr>");
+	
+	// 4. 두 수를 전달받아 합을 계산하여 출력하는 sum2() 함수 정의 
+	function sum2(num1, num2) {
+		document.write(num1 + " + " + num2 + " = " + (num1 + num2) + "<br>");
+	}
+	
+	// 5. 아이디, 패스워드를 전달받아 일치 여부를 판별하는 login() 함수 정의
+	// => 만약, 아이디가 "admin"이고 패스워드가 "1234"일 경우 "로그인 성공!" 출력
+	//	  아니면, "로그인 실패!" 출력
+	function login(id, passwd) {
+		if(id == "admin" && passwd == "1234"){
+			document.write("로그인 성공!<br>");
+		} else {
+			document.write("로그인 실패!<br>");
+		}
+	}
+	
+	
+	
+	// ========================================================================
+	// 1. printHello() 함수 호출하여 정수 1개 전달하여 원하는 횟수만큼 "Hello, World!" 출력
+	printHello(20);
+	document.write("<hr>");
+	
+	// 2. sum() 함수 호출하여 정수 1개 전달 => 1 ~ x까지의 합 출력
+	sum(10);
+	document.write("<hr>");
+	
+	// 3. gugudan() 함수 호출하여 정수 1개 전달 => 해당 단에 해당하는 구구단 출력
+	gugudan(465487);
+	document.write("<hr>");
+		
+	// 4. sum2() 함수 호출하여 정수 2개 전달 => 두 수의 합을 계산하여 출력
+	sum2(10, 20);
+	document.write("<hr>");
+	
+	// 5. login() 함수 호출하여  아이디와 패스워드를 전달 => 아이디, 패스워드 일치 여부 판별
+	let id = "admin";
+	let passwd = "1234";
+	login(id, passwd);
+</script>
+</head>
+<body>
+
+</body>
+</html>

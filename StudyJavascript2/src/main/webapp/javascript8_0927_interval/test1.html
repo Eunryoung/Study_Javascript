@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	var myTimer; // 다른 함수에서도 접근 가능한 전역변수 선언
+	
+	$(function(){
+		// 자바스크립트를 활용하여 주기적으로 특정 기능을 수행하고 싶을 경우
+		// => setInterval() 메서드로 주기적 반복을 수행하고
+		//	  clearInterva() 메서드로 반복 해제
+// 		var myTimer = setInterval(startTimer, 1000); // setInterval() 메서드가 알아서 실행하므로 startTimer 뒤에 () 붙이지말것 
+		// => startTimer 함수를 1000ms(=1초) 마다 호출
+		
+		// 시작 버튼 클릭 시 startTimer() 함수 호출
+		$("#btnStart").on("click", function() {
+// 			$("#timer").html(new Date()); // 시작 누르자마자 타이머가 뜨도록
+			startTimer();
+			
+			// 1초의 간격을 두고 startTimer() 함수 호출(처음 호출 될 때까지 1초의 시간 필요)
+			myTimer = setInterval(startTimer, 1000);
+		});
+		
+		// 종료 버튼 클릭 시 stopTimer() 함수 호출
+		$("#btnStop").on("click", function() {
+// 			stopTimer(); // 즉시 종료
+			
+			// setTimeout() 함수를 활용하여 지정된 시간 후에 특정 함수 실행 가능
+			setTimeout(stopTimer, 5000); // 5000ms = 5초 뒤에 stopTimer() 함수 호출
+
+			// clearTimeout() 함수를 활용하여 예정된 timeout 스케쥴 취소 가능
+// 			let myTimeout = setTimeout(stopTimer, 5000);
+// 			clearTimeout(myTimeout);
+
+			
+			
+		});
+	
+		// ==========================================================================
+		var imageSlider; // 밖에 변수 하나 선언
+		$("#btnStart2").on("click", function() {
+			// 2초마다 images 디렉토리의 이미지를 교체(1.jpg, 2.jpg, 3.jpg)
+			// 1) 사용할 이미지 파일을 배열로 생성
+			let imgArr = ["1.jpg", "2.jpg", "3.jpg"];
+		
+			let index = 0; // 배열 인덱스로 사용할 변수 선언
+			
+			// 2) 이미지 교체 작업을 2초마다 실행할 익명함수로 정의
+			imageSlider = setInterval(function() {
+				// 3) 이미지 교체
+				// => jQuery에서 HTML 속성 중 src 속성 변경
+				// 배열 인덱스를 활용하여 images 디렉토리의 이미지 파일명을 src 속성값으로 전달
+				$("#img").attr("src", "../images/" + imgArr[index]);
+				
+				// 인덱스 값 1 증가
+				index++;
+				
+				// 만약, 인덱스 값이 배열 크기와 동일하면 0으로 초기화
+				if(index == imgArr.length) {
+					index = 0;
+				}
+
+			}, 2000);
+			
+		});	
+		
+	});
+	
+	function startTimer() {
+// 		$("#timer").html("확인");
+// 		console.log("확인");
+		$("#timer").html(new Date());
+
+	}
+	
+	function stopTimer() {
+		// 실행 중인 setInterval() 함수 기능을 종료(중지)하려면
+		// clearInterval() 함수 호출하여 중지할 setInterval() 함수를 파라미터로 전달
+		clearInterval(myTimer);
+	}
+	
+// 내코드!	
+// 	function startSlide() {
+// 		$("img").attr("src", "../images/2.jpg");
+// 		myTimer = setInterval(startTimer, 1000);
+// 		$("img").attr("src", "../images/3.jpg");
+// 	}	
+		
+</script>
+</head>
+<body>
+	<div id="timer"></div>
+	<input type="button" value="시작!" id="btnStart">
+	<input type="button" value="종료!" id="btnStop">
+	<hr>
+	<input type="button" value="슬라이드 쇼 시작!" id="btnStart2">
+	<img src="../images/1.jpg" id="img" width="300" height="200">
+	
+</body>
+</html>

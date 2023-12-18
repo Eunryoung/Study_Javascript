@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check() {
+		// 셀렉트박스의 선택된 항목에 접근하려면 셀렉트박스 요소(태그)의 value 속성값 활용
+		// => 선택된 항목(option 태그)의 value 값이 셀렉트박스 자체의 value 값으로 설정됨
+// 		alert(document.fr.fruits.value);
+		// div 태그(infoArea) 영역에 선택된 항목값 출력
+		document.querySelector("#infoArea").innerHTML = document.fr.fruits.value;
+		
+		// 현재 셀렉트박스 선택항목이 "선택하세요" 일 경우(value 속성값이 ""일 경우)
+		// 다른 항목 선택을 요구하는 경고창(과일 선택 필수!) 출력 후 셀렉트박스에 포커스 요청
+		// 1) 셀렉트박스 value 속성값이 널스트링("")인지 판별
+// 		if(document.fr.fruits.value == "") {
+// 			alert("과일 선택 필수!");
+// 			document.fr.fruits.focus();
+// 		}
+		
+		// 2) 셀렉트박스 내의 option 태그 항목들이 options라는 배열로 관리되므로
+		//	  첫번째 배열 요소의 속성 중 selected 속성값이 true 인지 판별
+		if(document.fr.fruits.options[0].selected) { // document.fr.fruits.options[0].selected == true 와 동일
+			alert("과일 선택 필수!");
+			document.fr.fruits.focus();
+		}
+	}
+	
+	// 셀렉트박스 항목 변경 시(change 이벤트) 호출되는 함수 itemSelected() 정의
+	// => this.value로 전달되는 선택항목 value 값을 파라미터 item에 저장
+	function itemSelected(item) {
+		// 선택된 항목 value 값(item 변수값)을 텍스트박스(name 속성이 selectedFruit)에 출력
+		document.fr.selectedFruit.value = item;
+		
+		// 만약, "과일을 선택하세요" 항목이 선택되어 있을 경우
+		// 텍스트박스 항목에 입력(편집)이 불가능하도록 읽기 전용으로 설정하고
+		// 다른 항목이 선택되었을 경우 읽기전용상태를 해제
+		// => HTML 태그 상에서 readonly 속성 제어
+		//	  단, 자바스크립트에서 HTML속성 제어시 두 단어 이상의 이름일 경우
+		//	  Camel-case 표기법으로 사용해야한다!
+		//	  e.g. HTML의 readonly 속성 -> 자바스크립트의 readOnly 속성으로 제어
+// 		if(document.fr.fruits2.value == "과일을 선택하세요") {}				
+		if(document.fr.fruits2.options[0].selected) { // 첫번째 항목 선택시
+			// => document.fr.fruits2.value == "과일을 선택하세요"와 동일
+			document.fr.selectedFruit.readOnly = true; // 입력창 잠금
+		} else { // 다른 항목(과일) 선택시
+			document.fr.selectedFruit.readOnly = false; // 입력창 해제
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<h1>test32.html</h1>
+	<form action="test32_2.html" name="fr">
+	<!-- 폼 태그 내에서 셀렉트박스에 required 속성 지정 시 아무것도 선택하지 않아도 submit은 동작함 -->
+	<!-- 즉, 기본적으로 하나의 항목이 무조건 표시되므로 선택된 것으로 간주되어 불필요 -->
+<!-- 		<select name="fruits" required> -->
+<!-- 			<option value="Apple">사과</option> -->
+<!-- 			<option value="Strawberry" selected>딸기</option> 기본값으로 선택됨 -->
+<!-- 			<option value="Banana" disabled>바나나</option> 비활성화(선택불가) -->
+<!-- 		</select> -->
+	<!-- 
+	사용자로부터 셀렉트박스 항목을 반드시 선택하도록 하려면
+	첫번째 항목에 빈 값(널스트링)을 갖는 항목을 하나 추가하여
+	해당 항목이 선택되어 있을 경우 항목을 선택하지 않은 것으로 간주
+	-->
+		<select name="fruits">
+			<option value="">과일을 선택하세요</option>
+			<option value="Apple">사과</option>
+			<option value="Strawberry">딸기</option>
+			<option value="Banana">바나나</option>
+		</select>
+		<input type="button" value="선택값확인" onclick="check()">
+		<hr>
+		
+		<!-- 
+		셀렉트박스의 항목이 변경(선택)됨을 감지하는 이벤트 : change
+		=> 함수 호출 시 파라미터로 this.value 전달 시 선택된 항목값 직접 함수로 전달 가능
+		-->
+		<select name="fruits2" onchange="itemSelected(this.value)">
+			<option value="">과일을 선택하세요</option>
+			<option value="Apple">사과</option>
+			<option value="Strawberry">딸기</option>
+			<option value="Banana">바나나</option>
+		</select>
+		<input type="text" name="selectedFruit">
+		<hr>
+		<input type="submit" value="전송">
+	</form>
+	<div id="infoArea"></div> 
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ 대표적인 이벤트 종류 ]
+	1) click : 마우스클릭, dblclick : 마우스 더블클릭
+	2) mouseover : 마우스가 대상 위에 위치( = mouseenter 유사)
+	   mouseout : 마우스가 대상에서 빠져나감( = mouseleave 유사)
+	3) focus : 대상이 선택됨(=포커스가 위치함), blur : 대상 선택이 해제됨(=포커스 잃음)
+	4) change : 대상 선택이 해제될 때(포커스 잃음) 대상 요소의 값(value 속성값)이 변경됨
+	4) load : 대상 요소가 로딩 완료됨, onload: 대상 요소 로딩 해제됨
+	5) keydown : 키보드의 키 누름, keyup: 키보드의 키 뗌, keypress: 키보드의 키 누름
+	6) submit : 폼 데이터전송(submit 버튼 클릭 등), reset : 폼데이터 초기화 
+	 */
+	function clickButton() {
+		alert("버튼2 클릭됨!");
+	}
+	
+	function mouseover() {
+		// id 선택자 "mouseResultArea"인 요소에 "<h3>마우스오버!</h3>" 태그로 변경
+		document.querySelector("#mouseResultArea").innerHTML = "<h3>마우스오버!</h3>";
+	}
+	
+	function mouseout() {
+		// id 선택자 "mouseResultArea"인 요소에 "<h3>마우스아웃!</h3>" 태그로 변경
+		document.querySelector("#mouseResultArea").innerHTML = "<h3>마우스아웃!</h3>";
+	}
+
+	// 자바스크립트에서 이미지 교체는 대상 요소의 src 속성값 변경을 통해 교체 가능	
+	function changeImage() {
+		// id 선택자 "img" 지정하여 src 속성값을 "2.jpg"로 설정 = 이미지 교체
+		document.querySelector("#img").src = "2.jpg";
+	}
+	
+	function changeImage2() {
+		// id 선택자 "img" 지정하여 src 속성값을 "3.jpg"로 설정 = 이미지 교체
+		document.querySelector("#img").src = "3.jpg";
+		
+	}
+	function changeImage3() {
+		document.querySelector("#img").src = "1.jpg";
+	}
+	// onmouseover = "changeImage4(this)" 형태로 호출된 함수 정의
+	// => 파라미터로 해당 태그 요소를 객체로 전달받을 변수 선언
+	function changeImage4(element) { // <img> 태그 자체를 element 변수에 전달받아 저장
+// 		alert(element); // [object HTMLImageElement] 객체 출력됨		
+		// 함수 내에서 element 변수를 사용하여 해당 <img> 태그에 직접 접근 가능
+		// => document.queryXXX() 또는 document.getElementXXX() 메서드 등 불필요
+		element.src = "4.jpg";
+	}
+	
+	function changeImage5(element) {
+		element.src = "1.jpg";
+	}
+	
+	// this.src 값을 전달받는 함수 정의
+	function changeImage6(src) { // <img> 태그의 src 속성값을 전달받아 저장
+		alert(src); // 이미지 파일의 경로 및 파일명 출력
+		// => http://localhost:8080/StudyJavascript/javascript5_0914_browser_object/1.jpg		
+		// 함수 내에서 src 변수를 사용하여 해당 <img> 태그의 src 속성에 직접 접근 불가능
+		// => src 속성에 저장된 값만 전달되므로 값을 변경해도 해당 태그의 속성이 바뀌지 않음!
+// 		src = "4.jpg";
+	}
+	function changeImage7(src) {
+// 		src = "1.jpg";
+	}
+	
+	
+	function changeColor(element, color) {
+		// 전달받은 대상 요소(element)의 style.background 속성값을 color값으로 설정
+		// this로 대상 요소 객체를 전달받으므로 color 변수값을 그대로 활용하여 값 변경
+// 		alert("element : " + element + " color : " + color);
+		element.style.background = color;
+	}
+	
+	function getTdValue(element) {
+		// 전달받은 대상 요소 내의 텍스트 값 가져오기
+		let value = element.innerText;
+		alert(value);
+	}
+</script>
+</head>
+<body>
+	<h1>test26.html</h1>
+	<!-- "클릭" 버튼 클릭시 alert() 메서드를 사용하여 "버튼 클릭됨!" 출력 -->
+	<input type="button" value="클릭" onclick="alert('버튼 클릭됨!')">
+	<!-- "클릭2" 버튼 클릭시 clickButton() 함수를 호출 하여 "버튼2 클릭됨!" 출력 -->
+	<input type="button" value="클릭2" onclick="clickButton()"><br>
+	<hr>
+	
+	<!-- "마우스를 가져다 대세요" 버튼 생성 -->
+	<!-- 마우스 오버시 mouseover() 함수 호출, 마우스 아웃 시 mouseout() 함수 호출 -->
+	<input type="button" value="마우스를 가져다 대세요"
+			onmouseover="mouseover()" onmouseout="mouseout()">
+	<div id="mouseResultArea"></div>
+	<hr>
+	
+	<!-- 이미지 표시 후 이미지교체 및 이미지 교체2 버튼 클릭 시 다른 이미지로 대체(교체) -->
+	<!-- 1.jpg 이미지 표시(가로크기 : 150, 세로크기 :150, id 선택자 "img" -->
+	<!-- 이미지교체 버튼 생성(changeImage() 함수 연결), 이미지교체2 버튼 생성(changeImage2() 함수 연결) -->
+<!-- 	<img src = "1.jpg" width="150" height="150" id ="img"  -->
+<!-- 	onmouseover="changeImage4()" onmouseout="changeImage5()"> -->
+<!-- 	<img src = "1.jpg" width="150" height="150" id ="img" > -->
+<!-- 	onmouseover="document.querySelector('#img').src = '4.jpg'"  -->
+<!-- 	onmouseout="document.querySelector('#img').src = '1.jpg'"><br> -->
+	
+	<input type="button" value="이미지교체" onclick="changeImage()">
+	<input type="button" value="이미지교체2" onclick="changeImage2()">
+	
+	<!-- 이미지 복원 버튼 생성하여 changeImage3() 함수 연결 - 1.jpg 이미지로 교체 -->
+	<input type="button" value="이미지복원" onclick="changeImage3()">
+	<hr>
+	<!-- 태그에서 이벤트 발생 시 함수 호출할 때 전달인자로 this 지정 시
+	현재 태그를 함수에 객체 형태로 전달 => 전달받은 함수에서는 해당 태그 직접 제어 가능
+	(document.querySelector()등으로 요소 지정 불필요) -->
+	<img src = "1.jpg" width="150" height="150" id ="img2" 
+			onmouseover="changeImage4(this)" onmouseout="changeImage5(this)"><br>
+	
+	<!-- 함수 호출 시 전달인자로 this.xxx 지정시 현재 태그 내의 xxx 속성값을 전달 -->
+	<!-- this.src 지정 시 현재 태그 내의 src 속성값("1.jpg")을 함수로 전달 -->
+	<img src = "1.jpg" width="150" height="150" id ="img3" 
+	onmouseover="changeImage6(this.src)" onmouseout="changeImage7(this.src)"><br>
+	
+	<hr>
+	<table border="3">
+		<tr><th colspan = "3">테이블 연습</th></tr>
+		<!-- 테이블의 행(tr)에 마우스를 가져다 대면 changeColor() 함수 호출 -->
+		<!-- 함수 호출 시 파라미터에 현재 tr 태그 객체(this)와 변경할 색상을 전달 -->
+		<!-- 마우스를 가져다대면 '#FFCCCC' 색상으로 변경, 빼면 'WHITE' 로 변경 -->		
+		<tr onmouseover="changeColor(this, '#FFCCCC')" onmouseout="changeColor(this, 'white')">
+			<!-- 테이블의 열(td)에 마우스 갖다 대면 changeColor() 함수 호출 -->
+			<!-- 마우스오버 : "skyblue", 마우스아웃 : "white" -->
+			<td onmouseover="changeColor(this, 'skyblue')" 
+			onmouseout="changeColor(this, 'white')">1-1</td>
+			<td onmouseover="changeColor(this, 'skyblue')" 
+			onmouseout="changeColor(this, 'white')">1-2</td>
+			<td onmouseover="changeColor(this, 'skyblue')" 
+			onmouseout="changeColor(this, 'white')">1-3</td>
+		</tr>
+		<tr onmouseover="changeColor(this, '#FFCCCC')" 
+			onmouseout="changeColor(this, 'white')">
+			<td>2-1</td>
+			<td>2-2</td>
+			<td>2-3</td>
+		</tr>
+		<tr onmouseover="changeColor(this, '#FFCCCC')" 
+			onmouseout="changeColor(this, 'white')">
+			<!-- 3-1, -2, 3-3 <td> 태그 클릭 시 getTdValue() 메서드 호출(this 전달) -->
+			<td onclick = "getTdValue(this)">3-1</td>
+			<td onclick = "getTdValue(this)">3-2</td>
+			<td onclick = "getTdValue(this)">3-3</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

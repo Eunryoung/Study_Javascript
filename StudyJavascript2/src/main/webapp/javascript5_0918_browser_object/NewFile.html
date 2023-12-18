@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function requestFocus() {
+		document.fr.text1.focus();
+	}
+
+	function requestSelect() {
+		document.fr.text1.select();
+	}
+	
+	function showInfo() {
+// 		document.querySelector("#infoArea").innerHTML =
+// 			"text1 : " + document.fr.text1.value + "<br>" 
+// 			+ "text2 : " + document.fr.text2.value + "<br>"
+// 			+ "ta : " + document.fr.ta.value + "<br>";
+
+		let text1 = document.fr.text1.value;
+		let text2 = document.fr.text2.value;
+		let ta = document.fr.ta.value;
+		
+		document.querySelector("#infoArea").innerText =
+			"text1 : " + text1 + "\n" 
+			+ "text2 : " + text2 + "\n"
+			+ "ta : " + ta + "\n";
+	}
+	
+	function check() {
+// 		if(document.fr.text1.value == "") {
+// 			alert("첫번째 텍스트 입력 필수!");
+// 			document.fr.text1.focus();
+// 		} else if(document.fr.text2.value.length == 0) {
+// 			alert("두번째 텍스트 입력 필수!");
+// 			document.fr.text2.focus();
+// 		} else if(document.fr.ta.value.length == 0) {
+// 			alert("세번째 텍스트 입력 필수!");
+// 			document.fr.ta.focus();
+// 		} else {
+// 			document.fr.submit();
+// 		}
+		if(document.fr.text1.value == "") {
+			alert("첫번째 텍스트 입력 필수!");
+			document.fr.text1.focus();
+			return;
+		} else if(document.fr.text2.value.length == 0) {
+			alert("두번째 텍스트 입력 필수!");
+			document.fr.text2.focus();
+			return;
+		} else if(document.fr.ta.value.length == 0) {
+			alert("세번째 텍스트 입력 필수!");
+			document.fr.ta.focus();
+			return;
+		} 
+		document.fr.submit();
+	}
+	
+	function checkSubmit() {
+		if(document.fr.text1.value.length == 0) {
+			alert("첫번째 텍스트 입력 필수!");
+// 			document.fr.text1.focus();
+			return false;
+		} else if(document.fr.text2.value.length == 0) {
+			alert("두번째 텍스트 입력 필수!");
+			document.fr.text2.focus();
+			return false;
+		} else if(document.fr.ta.value.length == 0) {
+			alert("세번째 텍스트 입력 필수!");
+			document.fr.ta.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<form action="test30_2.html" name="fr" onsubmit="return checkSubmit()">
+		텍스트
+<!-- 		<input type="text" name="text1"> -->
+		<input type="text" name="text1" required>
+		<input type="button" value="focus()" onclick="requestFocus()">
+		<input type="button" value="select()" onclick="requestSelect()">
+		<br>
+		숨김텍스트
+<!-- 		<input type="password" name="text2"> -->
+		<input type="password" name="text2">
+		<br>
+		멀티라인텍스트
+<!-- 		<textarea rows="5" cols="20" name="ta"></textarea> -->
+		<textarea rows="5" cols="20" name="ta"></textarea>
+		<br>
+		<input type="button" value="입력값 출력" onclick="showInfo()">
+		<input type="button" value="입력값 확인" onclick="check()">
+		<input type="submit" value="입력값 전송">
+	</form>
+	<div id="infoArea"></div>
+</body>
+</html>

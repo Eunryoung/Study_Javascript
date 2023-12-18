@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//변수 선언문의 차이점(var vs let vs const)
+	// 1. var : 변수 선언 시 동일한 이름의 변수를 다시(중복) 선언하더라도 사용 가능하며
+	//          다른 데이터로 변경 시 아무런 문제 발생하지 않음
+	//          => 동일한 이름의 변수 선언 시 기존 변수 재사용
+	var num1= 10;
+	document.write("num1 : " + num1 + "<br>");
+	console.log("num1 : " + num1);
+	
+	// 기존에 선언된 num1 변수와 동일한 변수를 다시 선언하고, 다른 데이터 저장
+	var num1 = "임은령"; // 이미 존재하는 변수지만, 중복으로 인한 오류 없이 "임은령" 저장됨
+	document.write("num1 : " + num1 + "<br>"); // 기존 정수 10 대신 문자 "임은령" 출력됨
+	console.log("num1 : " + num1);
+	
+	//-------------------------------------------------------
+	// 2. let : 변수 선언 시 동일한 이름의 변수는 중복 선언 불가능하며(var 와 다른점)
+	//          다른 데이터로 변경 시 아무런 문제 발생하지 않음(var 와 같은점)
+	let num2= 10;
+	document.write("num2 : " + num2 + "<br>");
+	console.log("num2 : " + num2);
+	
+	// 기존에 존재하는 num2 변수를 let 키워드로 다시 선언할 경우
+	// 변수 중복으로 인한 오류 발생(이클립스에서도 감지되는 오류)
+	// => 오류 메세지 : Identifier 'num2' has already been declared
+	// => 이 오류로 인해 다른 정상적인 코드들도 모두 실행되지 못함	
+// 	let num2= 10;
+	
+	// 다만, let 으로 선언한 변수의 경우 중복 선언은 불가능하더라도
+	// 변수 값에 대한 변경은 가능함
+	num2 = 3.14;
+	document.write("num2 : " + num2 + "<br>");
+	console.log("num2 : " + num2);
+	
+	// var 로 선언한 변수를 let 으로 중복 선언 시 이클립스 상에서 오류 감지가 불가능하지만
+	// 실행 시 웹브라우저 개발자 도구에서 오류 확인 가능(let 중복 선언 시의 오류와 동일)
+// 	let num1= 10;
+// 	document.write("num1 : " + num1 + "<br>");
+// 	console.log("num1 : " + num1);
+
+	//==========================================================
+	// 3. const : 변수가 상수(constant)로 취급되어 저장된 값 변경 불가능
+	const num3 = 100;
+	document.write("num3 : " + num3 + "<br>");
+	
+	// num3 변수값을 99로 변경
+// 	num3 = 99; // 이 코드가 실행될 때 오류 발생. 상수는 값 변경 불가
+	// => 오류 메세지 : Assignment to constant variable.
+	// => 이 코드(오류 발생 위치)보다 위의 코드들은 정상적으로 실행되고
+	//    아래쪽 코드들만 실행되지 못한다!
+// 	document.write("num3 : " + num3 + "<br>"); //
+	
+	// 주의! const 로 변수(상수) 선언 시 값을 미리 지정하지 않으면 오류 발생!
+// 	const num4; => const num4 = 10; 등의 형식으로 고쳐야한다!
+	// 이클립스 상의 오류 메세지 : 'const' declarations must be initialized.
+	// 개발자도구 상의 오류 메세지 : Missing initializer in const declaration
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

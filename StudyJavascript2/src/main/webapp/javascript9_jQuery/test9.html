@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 문서가 로딩된 후 class 선택자 "td_center" 항목의 CSS 속성 중
+		// "text-align" 속성값을 "center"로 설정(해당 셀 가운데 정렬)
+		$(".td_center").css("text-align", "center");
+		
+		// "td_right" 항목은 우측 정렬
+		$(".td_right").css("text-align", "right");
+		
+		// 테이블의 "width" 속성값을 "500px"로 설정
+		$("table").css("width", "500px");
+		
+		// =========================================================================
+		// 전체선택 체크박스 (id="allCheck") 체크 상태 변화 감지 이벤트 핸들링
+		// => change 이벤트 활용
+		$("#allCheck").on("change", function() {
+			// 전체 선택 체크박스의 체크 상태 출력(자바스크립트 속성 접근용 prop() 메서드 활용)
+// 			console.log($(this).prop("checked"));
+			
+			// 전체선택 체크 시 모든 체크박스 체크, 체크 해제 시 모든 체크박스 체크 해제
+			// => prop() 메서드 파라미터로 속성명, 속성값 전달 시 속성 변경 가능
+			// => input[type=checkbox] 대신 가상선택자 :checkbox 사용 가능
+// 			if($("#allCheck").prop("checked")) { // 체크 시
+// // 				$("input[type=checkbox]").prop("checked", true);
+// // 				$(":checkbox").prop("checked", true); 
+
+// 					// :checkbox[name=name속성값] 지정 시 동일한 그룹의 체크박스만 선택 가능(모든 체크박스 중 name이 check인 애들만 적용)
+// // 				$(":checkbox[name=check]").prop("checked", true); 
+
+// 			} else { // 체크 해제 시
+// // 				$("input[type=checkbox]").prop("checked", false);
+// 					$(":checkbox").prop("checked", false);
+// 					$(":checkbox[name=check]").prop("checked", false);
+// 			}
+			
+			// is() 메서드로 동일한 판별 가능 => 가상선택자 :checked 활용하여 체크 상태 판별 
+// 			if($("#allCheck").is(":checked")) { // $("#allCheck").prop("checked")와 동일
+// 				$(":checkbox[name=check]").prop("checked", true);
+// 			} else {
+// 				$(":checkbox[name=check]").prop("checked", false);
+// 			}
+			
+			// each() 메서드를 활용하여 모든 체크박스 상태 변경
+			if($("#allCheck").is(":checked")) { // 체크 시
+				// 체크박스를 대상으로 each() 메서드를 통해 반복문을 수행
+				$(":checkbox").each(function(index, item) {
+					// 파라미터 item 에 체크박스 1개 객체가 전달됨
+					$(item).prop("checked", true);
+				});
+			} else { // 체크 해제 시
+				// 체크박스를 대상으로 each() 메서드를 통해 반복문을 수행
+				$(":checkbox").each(function(index, item) {
+					// 파라미터 item 에 체크박스 1개 객체가 전달됨
+					$(item).prop("checked", false);
+				});
+			}
+		}); // 전체 선택 체크박스 이벤트 끝
+		
+		// 셀렉트박스(id=selectBox) 항목 변경(선택) 이벤트 핸들링 => change 이벤트
+		$("#selectBox").on("change", function() {
+// 			console.log($("#selectBox").val()); // 선택 항목 value 속성값 출력
+			
+			// 셀렉트박스의 특정 항목(전체, VIP, 일반) 선택 여부 판별
+// 			if($("#selectBox").val() == "전체") {
+// 				console.log("전체 선택됨!");
+// 			} else if($("#selectBox").val() == "VIP") {
+// 				console.log("VIP 선택됨!");
+// 			} else if($("#selectBox").val() == "일반") {
+// 				console.log("일반 선택됨!");
+// 			}			
+			
+			// 현재 익명함수가 실행되는 대상 요소가 동일한 셀렉트박스이므로 $(this) 활용 가능!
+// 			if($(this).val() == "전체") {
+// 				alert("전체 선택됨!");
+// 			} else if($(this).val() == "VIP") {
+// 				alert("VIP 선택됨!");
+// 			} else if($(this).val() == "일반"){
+// 				alert("일반 선택됨!");
+// 			}
+			
+			// 셀렉트박스의 value 속성값 비교 대신 항목 선택 여부를 판별할 수도 있다!
+			// => 체크박스, 라디오버튼, 셀렉트박스 모두 :checked 가상 선택자 활용 가능
+			if($("#selectBox > option").eq(0).is(":checked")) { // 첫 번째 항목 선택 시
+				console.log("전체 선택됨!");
+			} else if($("#selectBox > option").eq(1).is(":checked")) { // 두 번째 항목 선택 시
+				console.log("VIP 선택됨!");
+			} else if($("#selectBox > option").eq(2).is(":checked")) { // 세 번째 항목 선택 시
+				console.log("일반 선택됨!");
+			}
+				
+		}); // 셀렉트박스 이벤트 끝
+		
+		// 텍스트박스에 대한 입력값 처리 이벤트
+		// keyup : 키보드를 눌렀다 "뗄 때" 이벤트 수행(값 변경과는 무관)
+		// blur : 입력창에서 "포커스가 해제될 때" 이벤트 수행(값 변경과는 무관)
+		// change : 입력창에서 "포커스가 해제될 때" "이전 값 기준으로 값 변경되면" 이벤트 수행
+		//			=> 이전 값 기준 값이 변경되지 않았을 경우 이벤트 동작 X
+// 		// id="keyword" 입력창에 대한 keyup 이벤트 핸들링
+// 		$("#keyword").on("keyup", function() {
+// 			console.log("키보드 눌렀다 뗌!");
+// 			// 입력된 항목을 id="resultArea" 영역 태그 사이에 출력
+			// => value 값이 없으므로 val() 대신 text() 나 html() 써야함!
+// 			$("#resultArea").text($(this).val());
+// 		});
+
+// 		// id="keyword" 입력창에 대한 blur 이벤트 핸들링
+// 		$("#keyword").on("blur", function() {
+// 			console.log("포커스 아웃!");
+// 			// 입력된 항목을 id="resultArea" 영역 태그 사이에 출력
+// 			$("#resultArea").text($(this).val());
+// 		});
+
+		// id="keyword" 입력창에 대한 change 이벤트 핸들링
+		$("#keyword").on("change", function() {
+			console.log("포커스 아웃 및 내용 변경됨!");
+			// 입력된 항목을 id="resultArea" 영역 태그 사이에 출력
+			$("#resultArea").text($(this).val());
+		});
+		
+		// id="img" 이미지에 대한 mouseover, mouseout 이벤트 핸들링
+		$("#img").on("mouseover", function() {
+			// 마우스오버 시 해당 이미지를 2.jpg로 교체
+			// => HTML 속성 중 src 속성값 변경(attr() 메서드 활용)
+			$(this).attr("src", "../images/2.jpg");
+		});
+		
+		$("#img").on("mouseout", function() {
+			// 마우스아웃 시 해당 이미지를 1.jpg로 교체(원래대로 되돌리기)
+			$(this).attr("src", "../images/1.jpg");
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<h1>jQuery - test9.html</h1>
+		<table border="1">
+		<tr>
+			<td colspan="3">
+				<select id="selectBox" name="grade">
+					<option value="전체">전체</option>
+					<option value="VIP">VIP</option>
+					<option value="일반">일반</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+            <th><input type="checkbox" id="allCheck"></th>
+            <th>번호</th>
+            <th>이름</th>
+        </tr>
+        <tr>
+            <td class="td_center"><input type="checkbox" name="check"></td>
+            <td class="td_center">1</td>
+            <td class="td_center">홍길동</td>
+        </tr>
+        <tr>
+            <td class="td_center"><input type="checkbox" name="check"></td>
+            <td class="td_center">2</td>
+            <td class="td_center">이순신</td>
+        </tr>
+        <tr>
+            <td class="td_center"><input type="checkbox" name="check"></td>
+            <td class="td_center">3</td>
+            <td class="td_center">강감찬</td>
+        </tr>
+        <tr>
+        	<td colspan="3" class="td_right">
+        		<select id="searchType" name="searchType">
+					<option value="이름">이름</option>
+					<option value="아이디">아이디</option>
+				</select>
+        		<input type="text" name="searchKeyword" id="keyword" placeholder="검색어입력">
+        		<input type="button" value="검색" id="btnSearch">
+        	</td>
+        </tr>
+	</table>
+	<div id="resultArea"></div>
+	<img src="../images/1.jpg" width="300" height="200" id="img">
+</body>
+</html>

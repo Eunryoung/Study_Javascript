@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ form 태그 내의 각 요소에 접근하는 방법 ]
+	1) 기존의 document.querySelector() 메서드 등을 활용하여 해당 요소를 직접 지정하는 방법 또는
+	2) form 태그를 통해 폼 내의 요소에 접근하는 방법
+	   - document.form태그의name속성값.접근할태그의name속성값.속성명 또는
+	     document.form태그의name속성값.접근할태그의name속성값.메서드명()
+		 => 속성명 : name, type, value 등
+		 => 메서드 : focus() - 대상 요소에 커서(포커스) 요청
+	     	         blur() - 대상 요소에서 커서(포커스) 해제
+	                 select() - 대상 요소에 포커스 요청 및 입력 항목 블럭 지정
+	*/
+	function requestFocus() {
+		// 폼 태그(name 속성값이 "fr") 내의 텍스트 박스(name 속성값이 text1)에 접근하여
+		// => 해당 요소에 포커스(커서) 요청 => focus() 메서드 활용
+		document.fr.text1.focus(); // 버튼 클릭 시 텍스트 입력창에 커서가 위치 및 텍스트 블럭 지정
+	}
+	
+	function requestSelect() {
+		// 폼 태그(name 속성값이 "fr") 내의 텍스트 박스(name 속성값이 text1)에 접근
+		// => 해당 요소에 포커스(커서) 요청 => select() 메서드 활용
+		document.fr.text1.select(); // 버튼 클릭시 텍스트 입력창에 커서가 위치하고 텍스트를 블럭 지정함
+	}
+	
+	function showInfo() {
+		// 폼 태그 내의 입력 데이터(text1, text2, ta) 가져와서
+		// infoArea 영역에 출력하기(div 태그 사이에 각 데이터를 문자열 결합하여 표시하기) 
+		// => 입력 요소의 value 속성을 통해 값 가져오기
+		let text1 = document.fr.text1.value;
+		let text2 = document.fr.text2.value;
+		let ta = document.fr.ta.value;
+		
+		// innerHTML 속성으로 출력 시 줄바꿈은 <br> 태그로 표기하고,
+		// textarea 태그 요소의 입력 데이터에 대한 줄바꿈은 무시됨
+// 		document.querySelector("#infoArea").innerHTML = 
+// 			"text1 : " + text1 + "<br>" + "text2 : " + text2 + "<br>" +  "ta : " + ta + "<br>";
+
+		// innerHTML 속성으로 출력 시 줄바꿈은 "\n" 문자열로 표기하고,
+		// textarea 태그 요소의 입력 데이터에 대한 줄바꿈도 처리됨
+		document.querySelector("#infoArea").innerText = 
+			"text1 : " + text1 + "\n" + "text2 : " + text2 + "\n" +  "ta : " + ta + "\n";
+	}
+	
+	function check() {
+		// 폼 태그 입력 항목 중 입력되지 않은 항목 존재 여부 판별
+		// => 기본적으로 submit 버튼과 입력항목의 required 속성 조합하여 간단하게 구현하지만
+		//	  추가적인 작업(입력값 규칙 검증 등)을 수행할 경우
+		// 	  자바스크립트 함수를 통해 코드 구현 가능
+		// 1) 입력 항목(value 속성값)이 널스트링("") 인지 판별
+		// 2) 입력 항목의 문자열 길이(length 속성값)가 0인지 판별
+		
+// 		if(document.fr.text1.value == "") { // text1 텍스트박스 입력값이 널스트링인지 판별
+// 			// "첫번째 텍스트 입력 필수!" 경고창 출력 후 text1 입력창에 포커스(커서) 요청
+// 			alert("첫번째 텍스트 입력 필수!");
+// 			document.fr.text1.focus();
+// 		} else if(document.fr.text2.value.length == 0) { // text2 텍스트박스 입력값의 길이가 0인지 판별
+// 			alert("두번째 텍스트 입력 필수!");
+// 			document.fr.text2.focus();
+// 		} else if(document.fr.ta.value.length == 0) { // ta 텍스트에어리어 입력값의 길이가 0인지 판별
+// 			alert("세번째 텍스트 입력 필수!");
+// 			document.fr.ta.focus();
+// 		} else {
+// 			// 폼 태그 요소에 대해 submit() 메서드를 호출하여 모든 항목이 입력되었을 경우
+// 			// submit 버튼 클릭 없이도 submit 동작을 수행 가능
+// 			document.fr.submit();
+// 		}
+		
+		// ---------------------------------------------------
+		// 입력값 체크 후 if 문 마지막에 else문을 통해 submit() 메서드를 호출하지 않고
+		// if문 바깥에서 submit() 메서드를 호출할 경우 각 조건 처리 후 return 문 활용
+		// => 미입력 항목 체크 후 블록문 내에서 현재 함수 실행을 즉시 종료하도록 return문 지정
+		
+		if(document.fr.text1.value == "") { // text1 텍스트박스 입력값이 널스트링인지 판별
+			// "첫번째 텍스트 입력 필수!" 경고창 출력 후 text1 입력창에 포커스(커서) 요청
+			alert("첫번째 텍스트 입력 필수!");
+			document.fr.text1.focus();
+			return; // 현재 함수 (check()) 실행을 종료
+		} else if(document.fr.text2.value.length == 0) { // text2 텍스트박스 입력값의 길이가 0인지 판별
+			alert("두번째 텍스트 입력 필수!");
+			document.fr.text2.focus();
+			return; // 현재 함수 (check()) 실행을 종료
+		} else if(document.fr.ta.value == "") { // ta 입력값이 널스트링인지 판별
+			alert("세번째 텍스트 입력 필수!");
+			document.fr.ta.focus();
+			return; // 현재 함수 (check()) 실행을 종료
+		}
+		// if문의 모든 조건 판별 결과가 false일 경우 실행되는 코드
+		document.fr.submit();
+	}
+	
+	function checkSubmit() {
+		if(document.fr.text1.value == "") { // text1 텍스트박스 입력값이 널스트링인지 판별
+			// "첫번째 텍스트 입력 필수!" 경고창 출력 후 text1 입력창에 포커스(커서) 요청
+			alert("첫번째 텍스트 입력 필수!");
+			document.fr.text1.focus();
+			return false; // submit 동작 취소
+		} else if(document.fr.text2.value.length == 0) { // text2 텍스트박스 입력값의 길이가 0인지 판별
+			alert("두번째 텍스트 입력 필수!");
+			document.fr.text2.focus();
+			return false; // submit 동작 취소
+		} else if(document.fr.ta.value.length == 0) { // ta 텍스트에어리어 입력값의 길이가 0인지 판별
+			alert("세번째 텍스트 입력 필수!");
+			document.fr.ta.focus();
+			return false; // submit 동작 취소
+		}
+		
+		// if문의 모든 조건 판별 결과가 false일 경우 실행되는 코드
+		return true; // submit 동작 수행
+	}
+	
+</script>
+</head>
+<body>
+	<h1>test30.html - form 태그 이벤트</h1>
+	<!-- form 태그 내의 onsubmit 이벤트를 활용하면 submit 버튼 클릭 시 수행할 함수 호출 가능 -->
+	<!-- 단, 함수 호출 시 서브밋 동작 여부 결정을 위해 return 함수명() 형식으로 호출 -->
+	<!-- 함수 내에서 true값 리턴 시 submit 동작하고 false값 리턴시 submit 동작 취소 -->
+	<form action="test30_2.html" name="fr" onsubmit="return checkSubmit()"> <!-- id="fr" 지움 -->
+		<!-- form 태그 내의 입력 요소에 required 속성 지정 시
+		해당 항목이 입력되지 않은 상태로 submit 버튼을 클릭해도 submit 동작이 수행되지 않는다!
+		(해당 입력 요소에 대한 입력 요청 내용을 표시) 
+		required="required" 또는 required 형식으로 명시-->
+<!-- 		텍스트 <input type="text" name="text1" required="required"> -->
+		텍스트 <input type="text" name="text1">
+		<input type="button" value="focus()" onclick="requestFocus()">
+		<input type="button" value="select()"onclick="requestSelect()">
+		<br>
+<!-- 		숨김텍스트 <input type="password" name="text2" required> -->
+		숨김텍스트 <input type="password" name="text2">
+		<br>
+<!-- 		멀티라인텍스트 <textarea rows="5" cols="20" name="ta" required></textarea> -->
+		멀티라인텍스트 <textarea rows="5" cols="20" name="ta"></textarea>
+		<br>
+		<input type="button" value="입력값 출력" onclick="showInfo()">
+		<input type="button" value="입력값 확인" onclick="check()">
+		<input type="submit" value="입력값 전송">
+	</form>
+	<div id="infoArea"></div> 
+</body>
+</html>

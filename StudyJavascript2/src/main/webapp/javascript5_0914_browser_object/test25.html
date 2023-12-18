@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ innerText vs innerHTML ]
+	- 둘 다 대상 요소(객체)의 내용을 확인하거나 변경하는 용도로 사용하는 속성
+	- innerText 는 대상 요소의 내용 중 텍스트만 취급하지만
+	  innerHTML 은 대상 요소의 내용을 HTML 태그까지 모두 취급
+	- 주의! innerHTML 에서 HTML 은 대문자로 표기!
+	  
+	< 기본 문법 >
+	1. 확인 : document.getElementXXX().innerText 또는 document.getElementXXX().innerHTML
+	   => 또는 document.queryXXX() 으로 대체 가능
+	2. 변경 : innerText = 내용 또는 innerHTML = 내용
+	*/
+
+	function funcInnerText() {
+		// id 선택자 "divInnerText"인 요소 객체 가져와서 변수에 저장
+// 		let divInnerText = document.getElementById("divInnerText");		
+		let divInnerText = document.querySelector("#divInnerText");
+// 		alert(divInnerText); // [object HTMLDivElement]
+		
+		// divInnerText 변수로 접근 가능한 대상요소 (div 태그)의 innerText 속성값 출력
+// 		alert(divInnerText.innerText); // 기본으로 표시할 텍스트 => 태그 제외 한 텍스트만 출력
+		
+		// innerText 속성을 활용하여 해당 div 태그 내의 텍스트 내용 변경
+		divInnerText.innerText = "<h3>innerText로 변경한 텍스트</h3>";
+	}
+	
+	function funcInnerHTML() {
+		// id 선택자 "divInnerHTML"인 요소 객체 가져와서 변수에 저장
+		let divInnerHTML = document.querySelector("#divInnerHTML");
+// 		alert(divInnerHTML); // [object HTMLDivElement]
+		
+		// divInnerHTML 변수로 접근 가능한 대상요소 (div 태그)의 innerHTML 속성값 출력
+// 		alert(divInnerHTML.innerHTML); // <h3>기본으로 표시할 텍스트</h3> => 태그 포함 출력
+
+		// innerHTML 속성을 활용하여 해당 div 태그 내의 텍스트 내용 변경
+		divInnerHTML.innerHTML = "<h3>innerHTML로 변경한 텍스트</h3>";
+		
+		// HTML 요소 아무거나 설정 가능
+		// => 단, innerText 또는 innerHTML 속성값을 여러번 변경 시 기존 값 덮어씀
+		divInnerHTML.innerHTML = '<input type="button" value="확인" onclick="func1()">';
+		// => 버튼 요소가 생성되며 클릭 이벤트도 동작한다!
+	}
+	
+	function func1() {
+		alert("확인!");
+	}
+	
+</script>
+</head>
+<body>
+	<h1>test25.html</h1>
+	<input type="button" value="innerText" onclick="funcInnerText()">
+	<input type="button" value="innerHTML" onclick="funcInnerHTML()">
+	<hr>
+	<div id="divInnerText">
+<!-- 		<h3>기본으로 표시할 텍스트</h3> -->
+	</div>
+	<hr>
+	<div id="divInnerHTML">
+<!-- 		<h3>기본으로 표시할 텍스트</h3> -->
+	</div>
+	<hr>
+</body>
+</html>

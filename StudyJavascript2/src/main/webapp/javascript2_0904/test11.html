@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	 * while문
+	 * - for문과 마찬가지로 특정 조건식의 판별 결과가 true일 동안 반복
+	 * - for문과 달리 조건식 위치만 정해져 있고,
+	 *   초기식과 증감식의 위치는 유동적으로 변함(생략도 가능)
+	 *   (개발자가 정해야 함!)
+	 * - for문은 주로 반복 횟수가 정해져 있는 경우 사용하며,
+	 *   while문은 주로 반복 횟수가 정해져 있지 않은 경우 사용
+	 * - for문과 while문은 100% 상호 변환이 가능함!
+	 * 
+	 * < 기본 문법 >
+	 * [초기식;] // while문 보다 위에 위치해야함(생략도 가능)
+	 * 
+	 * while(조건식) {
+	 * 		[증감식;]		
+	 * 		// 조건식 결과가 true일 때 반복 실행할 문장
+	 *  	[증감식;] // 증감식 위치는 반복할 문장보다 위에 올 수도 있다!
+	 * }
+	 */	
+	 
+	// for문 사용하여 "Hello, World!" 3번 반복 출력
+	for(let i = 1; i <= 3; i++){
+		document.write(i + " : Hello, World!<br>");
+	}
+	
+	document.write("<hr>");
+	
+	// while 문을 사용하여 위의 작업과 동일한 작업 수행
+	let i = 1; // 초기식(while 문보다 윗쪽에 위치)
+	while(i <= 3) {  // 조건식
+		 // 조건식 판별 결과가 true 일 때 반복 실행할 문장들...		
+		document.write(i + " : Hello, World!<br>");
+		i++; // 증감식(while 문 내부에 위치)
+	}
+	
+	document.write("<hr>");
+	
+	// 정수 한개를 입력받아 변수 num에 저장 후, 1 ~ num까지 차례대로 출력
+	// ex) 5 입력 시 1 2 3 4 5 출력
+// 	let num = prompt("정수를 입력하세요");
+	
+// 	i = 1;  // 초기식(위에 i 변수가 이미 선언되어 있으므로 초기화만 진행)
+
+// 	while(i <= num) {  // 조건식(i 값이 num 보다 작거나 같을 동안 반복)
+// 		document.write(i + " ");
+// 		i++;  // 증감식
+// 	}
+	
+// 	document.write("<hr>");
+	
+	// 정수 한개를 입력받아 변수 num에 저장 후, 1 ~ num까지의 합 계산하여 출력
+	// ex) 10 입력 시 1 ~ 10 까지 정수의 합 = 55 출력
+	 
+	let total = 0;  // 합계를 누적할 누적변수 선언(합계를 위한 초기값 0 지정)
+	num = prompt("정수를 입력하세요");  // 위의 작업에서 입력받은 값 그대로 활용
+	i = 1; // 초기식(위에 i 변수가 이미 선언되어 있으므로 초기화만 진행)
+	
+	while(i <= num) {  // 조건식(i 값이 num 보다 작거나 같을 동안 반복)
+		 // 현재 i 값을 누적변수 total 에 누적		
+		total = total + i;  // total = total + i; 동일
+		i++; // 증감식
+	}
+	
+	 // 합계 출력은 반복문이 끝난 후 수행
+	document.write("1 ~ " + num + "까지의 합 = " + total);
+	document.write("<hr>");
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

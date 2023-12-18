@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	[ 자바스크립트 변수 ]
+	- 변수(variable)란? 데이터 저장 공간(데이터 교체 가능)
+	- 변수 선언 기본 문법 : 데이터타입 변수명 = 값;
+	  => 선언문과 초기화 문장 분리도 가능
+	     (데이터타입 변수명;  =>  변수명 = 값;)
+	- 다만, 자바와 달리 변수 선언 시 데이터타입을 별도로 구별하지 않고
+	  var 또는 let 또는 const 로 선언함
+	  => 세 가지는 각각의 특징이 다름
+	- 변수명 지정 시 자바 식별자 작성 규칙과 거의 동일한 규칙 적용됨
+	- 변수에 저장 가능한 데이터는 어떤 타입이든 저장 가능하며
+	  문자(= 문자열, string), 숫자(number), 논리(boolean), 
+	  특수값 undefined 와 null, 객체 등 저장 가능
+	  => 변수 선언 및 값을 할당하면 자동으로 해당 변수 타입이 결정됨
+	*/
+
+	// 변수 선언 기초
+// 	var num;
+// 	let num2;
+// 	const num3; // 오류 발생! => 원인 나중에
+
+	// 변수 선언 및 다양한 데이터 저장
+	// 변수 str 선언
+// 	let str;
+	// 변수 str에 문자(문자열) "자바스크립트" 저장 후 출력
+// 	str = "자바스크립트";
+	// 위의 두 문장을 한 문장으로 결합
+	let str = "자바스크립트";  // 데이터 저장(대입) 시점에 string 타입으로 데이터타입이 변경됨
+// 	document.write(str);
+	
+	//여러 타입 데이터 저장
+	let num1 = 10;  // 숫자 데이터 저장 시 정수, 실수 구분 없이 number 타입으로 취급됨
+	let num2 = 3.14;  // 숫자 데이터 저장 시 정수, 실수 구분 없이 number 타입으로 취급됨
+	let b = true; // 논리값(true 또는 false) 저장 시 boolean 타입으로 취급됨
+	
+	//주의! 특수한 타입
+	let v1;
+	let v2 = null;
+	
+	// 자바스크립트에서 특정 변수 또는 데이터의 타입을 알아내는 방법 : typeof 키워드 사용
+	// 기본문법1) typeof 변수명; 또는 typeof 데이터; 
+	// 기본문법2) typeof(변수명); 또는 typeof(데이터);	
+	document.write("입력데이터 : " + str + ", 데이터 타입 : " + typeof(str) + "<br>");
+	// => 입력 데이터 : 자바스크립트, 데이터타입 : string	
+	document.write("입력데이터 : " + num1 + ", 데이터 타입 : " + typeof(num1) + "<br>");
+	// => 입력 데이터 : 10, 데이터타입 : number	
+	document.write("입력데이터 : " + num2 + ", 데이터 타입 : " + typeof(num2) + "<br>");
+	// => 입력 데이터 : 3.14, 데이터타입 : number	
+	document.write("입력데이터 : " + b + ", 데이터 타입 : " + typeof(b) + "<br>");
+	// => 입력 데이터 : true, 데이터타입 : boolean
+	
+	// 아무 데이터도 저장하지 않은 변수는 값이 undefined 이고, 데이터타입도 undefined	
+	document.write("입력데이터 : " + v1 + ", 데이터 타입 : " + typeof(v1) + "<br>");
+	// => 입력 데이터 : undefined, 데이터타입 : undefined
+	// => 아직 아무것도 정해지지 않은 데이터이자, 데이터타입
+	
+	// 특수한 값인 null 값은 객체가 없다는 의미이며, 데이터타입이 객체(object) 타입으로 취급됨	
+	document.write("입력데이터 : " + v2 + ", 데이터 타입 : " + typeof(v2) + "<br>");
+	// => 입력 데이터 : null, 데이터타입 : object
+	document.write("<hr>");
+	//===========================================================
+	// 변수 data 선언 및 100으로 초기화 후 데이터 및 데이터타입 출력
+	let data = 100;
+	document.write("입력데이터 : " + data + ", 데이터 타입 : " + typeof(data) + "<br>");
+	// => 입력 데이터 : 100, 데이터타입 : number	
+	
+	// 만약, 기존 변수에 다른 타입의 값을 저장하면 해당 변수의 데이터타입도 변경됨
+	data = "Hello, World!";  // 기존 number 타입에서 string 타입으로 변경됨
+	document.write("입력데이터 : " + data + ", 데이터 타입 : " + typeof(data) + "<br>");
+	// => 입력 데이터 : Hello, World!, 데이터타입 : string
+	
+	data = false;  // 기존 string 타입에서 boolean 타입으로 변경됨
+	document.write("입력데이터 : " + data + ", 데이터 타입 : " + typeof(data) + "<br>");
+	// => 입력 데이터 : false, 데이터타입 : boolean	
+
+</script>
+</head>
+<body>
+</body>
+</html>
