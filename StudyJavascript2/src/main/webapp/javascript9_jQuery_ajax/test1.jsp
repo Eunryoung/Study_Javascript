@@ -65,8 +65,8 @@
 // 					id : "hong"
 // 					passwd : "1234"
 					// ---------- 입력폼에서 값을 가져와서 전달 시 ----------------------
-					id : $("#id").val(), // id 선택자의 value 속성값을 id 파라미터로 저장
-					passwd : $("#passwd").val() // passwd 선택자의 value 속성값을 passwd 파라미터로 저장
+// 					id : $("#id").val(), // id 선택자의 value 속성값을 id 파라미터로 저장
+// 					passwd : $("#passwd").val() // passwd 선택자의 value 속성값을 passwd 파라미터로 저장
 				},
 				// -------- 입력폼에서 값을 한꺼번에 가져와서 전달 시 ---------
 				// 폼 객체 지정하여 serialize() 메서드 호출하여 폼 파라미터 묶음 처리
